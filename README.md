@@ -1,130 +1,40 @@
-# cluesbysam🧩 Clues by Sam Puzzle Guides
+# dreamy-room-level
+# dreamy-room Level Walkthroughs (Fan Guide Site)
 
-CluesBySam.org is a fan-made guide website dedicated to the logic puzzle game Clues by Sam.
-The site provides clear explanations of game rules, step-by-step level solutions, video walkthroughs, and strategy tips to help players solve even the hardest puzzles — without guessing.
+A fast, SEO-friendly walkthrough website for **dreamy-room** — level-by-level solutions, tips, and video guides.  
+This project is inspired by modern game guide sites (e.g. dreamy-room.org style), with a focus on:
+- Clean layout and great reading experience
+- Structured level pages for search engines
+- Easy content updates and fast deployment
 
-🌐 Live Site (planned / deployed):
-https://cluesbysam.org
+> **Disclaimer:** This is a fan-made guide site. It is not affiliated with or endorsed by the game’s developers/publishers.
 
-🎮 About the Game
+---
 
-Clues by Sam is a daily logic puzzle game where players must determine whether each character in a grid is innocent or a criminal using pure deduction.
+## ✨ Features
 
-Game characteristics:
+- **Level pages**: `/level/{id}` format (example: `/level/1`)
+- **Walkthrough content**: step-by-step solution text + notes
+- **Video guide embed**: YouTube iframe support
+- **Related levels**: link to next/previous and recommended levels
+- **Social share**: one-click sharing buttons (optional)
+- **SEO-ready**:
+  - Title/description per page
+  - Canonical URLs
+  - Sitemap + robots.txt
+  - Clean internal linking
 
-Every character always tells the truth
+---
 
-No guessing is allowed — every move must be logically proven
+## 🧱 Tech Stack
 
-Puzzles rely on grid logic, neighbor counts, and cross-referencing clues
+- Static HTML/CSS/JS (lightweight and easy to host)
+- Optional: Node scripts for scraping/building pages (if you use generators)
+- Deploy-ready for **Vercel** / **Netlify** / any static host
 
-New puzzles are released regularly
+---
 
-This project exists to help players:
+## 📂 Project Structure
 
-Understand the rules more clearly
+Example structure (adjust to your repo):
 
-Learn proven deduction strategies
-
-Find walkthroughs when they get stuck
-
-Review past puzzles and solutions
-
-🌟 Features
-
-🏠 Home
-Introduction to the game, rules overview, and latest updates.
-
-🗺️ Levels / Walkthroughs
-Step-by-step solutions for daily and archived puzzles, including:
-
-Logical deduction explanations
-
-Final grid conclusions
-
-Embedded video guides
-
-▶️ Play Online
-Play the original game directly via iframe embedding:
-
-https://cluesbysam.com/
-
-
-📝 Blog
-Articles covering:
-
-Beginner tips
-
-Advanced logic techniques
-
-Common mistakes and how to avoid them
-
-Puzzle-solving strategies
-
-📬 Contact
-Feedback, suggestions, and guide submissions from the community.
-
-🔍 SEO & Content Goals
-
-This site is built with SEO-first content structure, focusing on:
-
-Clear page hierarchy (Home → Levels → Blog)
-
-Keyword-focused titles and meta descriptions
-
-Human-readable walkthrough explanations
-
-Internal linking between levels and strategy articles
-
-Primary keywords:
-
-Clues by Sam
-Clues by Sam puzzle solutions
-Clues by Sam walkthrough
-Logic puzzle game guide
-Daily puzzle solutions
-
-🛠️ Tech Stack (Suggested / Planned)
-
-Static site generation (Next.js / Astro / plain HTML)
-
-SEO-friendly routing
-
-Embedded YouTube walkthroughs
-
-Deployed on Vercel / Cloudflare Pages
-
-(Exact stack may evolve as the project grows.)
-
-⚠️ Disclaimer
-
-This website is not affiliated with or endorsed by the official Clues by Sam developers.
-All game content belongs to its respective creators.
-This project is for educational and community-help purposes only.
-
-🤝 Contributing
-
-Contributions are welcome!
-
-You can help by:
-
-Submitting puzzle solutions
-
-Sharing video walkthroughs
-
-Improving explanations
-
-Reporting errors or outdated content
-
-Feel free to open an issue or pull request.
-
-📩 Contact
-
-If you have questions, suggestions, or want to contribute:
-
-📧 Email: contact@cluesbysam.org
-
-🌍 Website: https://cluesbysam.org
-
-Happy puzzling 🧠✨
-CluesBySam.org Team

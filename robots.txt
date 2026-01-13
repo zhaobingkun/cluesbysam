@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cluesbysam.org/sitemap.xml
