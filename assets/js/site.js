@@ -109,10 +109,10 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "CluesBySam.org",
-      "url": "https://cluesbysam.org/",
+      "url": "https://cluesbysam.net/",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://cluesbysam.org/level/{search_term_string}/",
+        "target": "https://cluesbysam.net/level/{search_term_string}/",
         "query-input": "required name=search_term_string"
       }
     });
@@ -127,9 +127,9 @@
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cluesbysam.org/" },
-            { "@type": "ListItem", "position": 2, "name": "Levels", "item": "https://cluesbysam.org/levels.html" },
-            { "@type": "ListItem", "position": 3, "name": `Level ${lvl}`, "item": `https://cluesbysam.org/level/${lvl}/` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cluesbysam.net/" },
+            { "@type": "ListItem", "position": 2, "name": "Levels", "item": "https://cluesbysam.net/levels.html" },
+            { "@type": "ListItem", "position": 3, "name": `Level ${lvl}`, "item": `https://cluesbysam.net/level/${lvl}/` }
           ]
         });
         addJsonLd({
