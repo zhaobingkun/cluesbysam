@@ -56,13 +56,13 @@
     wrap.setAttribute('data-analytics-gtag', 'true');
     const scriptAsync = document.createElement('script');
     scriptAsync.async = true;
-    scriptAsync.src = 'https://www.googletagmanager.com/gtag/js?id=G-31PECBEES4';
+    scriptAsync.src = 'https://www.googletagmanager.com/gtag/js?id=G-99Y6YPMSV8';
     const scriptInline = document.createElement('script');
     scriptInline.textContent = `
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-31PECBEES4');
+      gtag('config', 'G-99Y6YPMSV8');
     `;
     wrap.appendChild(scriptAsync);
     wrap.appendChild(scriptInline);
