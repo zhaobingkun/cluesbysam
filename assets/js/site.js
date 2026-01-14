@@ -5,7 +5,7 @@
   const navToggle = document.querySelector('[data-nav-toggle]');
   const navLinks = document.querySelector('.nav-links');
   if(navToggle && navLinks){ navToggle.addEventListener('click', ()=> navLinks.classList.toggle('open')); }
-  const isLevelPage = /\\/level\\/\\d+\\/?$/.test(window.location.pathname);
+  const isLevelPage = /\/level\/\d+\/?$/.test(window.location.pathname);
   if (isLevelPage) {
     document.body.classList.add('level-page');
   }
@@ -184,7 +184,7 @@
 
     const playlist = window.CLUES_PLAYLIST;
     const path = window.location.pathname || '';
-    let currentLevel = parseInt((path.match(/level\\/(\\d+)/) || [])[1], 10);
+    let currentLevel = parseInt((path.match(/level\/(\d+)/) || [])[1], 10);
     if (Number.isNaN(currentLevel)) {
       const badgeText = (document.querySelector('.badge') || {}).textContent || '';
       currentLevel = parseInt((badgeText.match(/(\\d+)/) || [])[1], 10);
@@ -266,16 +266,18 @@
     const h = 640;
     const left = (window.screen.width - w) / 2;
     const top = (window.screen.height - h) / 2;
-    const win = window.open(url, title || 'Share', `width=${w},height=${h},top=${top},left=${left},noopener,noreferrer`);
+    const win = window.open(url, title || 'Share', `width=${w},height=${h},top=${top},left=${left},noopener=yes`);
     if (!win || win.closed || typeof win.closed === 'undefined') {
       console.warn('Popup blocked. Please allow popups to share.');
     } else {
       try { win.focus(); } catch(e) {/* ignore */ }
     }
+    return win;
   }
 
   function bindShareBox(box) {
-    const url = window.location.href;
+    const canonical = document.querySelector('link[rel=canonical]');
+    const url = (canonical && canonical.href) || window.location.href;
     const title = (document.querySelector('h1') || {}).textContent || 'Clues by Sam level guide';
     box.querySelectorAll('[data-share]').forEach((btn) => {
       btn.addEventListener('click', async () => {
@@ -295,7 +297,9 @@
         if (type === 'twitter') shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
         if (type === 'reddit') shareUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
         if (type === 'whatsapp') shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`;
-        if (shareUrl) openSharePopup(shareUrl, `Share ${title}`);
+        if (shareUrl) {
+          openSharePopup(shareUrl, `Share ${title}`);
+        }
       });
     });
   }
