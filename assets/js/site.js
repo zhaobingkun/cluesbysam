@@ -40,13 +40,8 @@
   ];
 
   function injectFooterLinks() {
-    const grid = document.querySelector('.footer-grid');
-    if (!grid || grid.querySelector('[data-friend-links]')) return;
-    const col = document.createElement('div');
-    col.setAttribute('data-friend-links','');
-    const list = friendLinks.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`).join('<br>');
-    col.innerHTML = `<strong>Friend Links</strong><p>${list}</p>`;
-    grid.appendChild(col);
+    // Friend links injection disabled to avoid duplicate footer columns.
+    return;
   }
 
   function injectAnalytics() {

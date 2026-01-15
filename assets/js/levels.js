@@ -25,7 +25,10 @@
     const searchBtn = document.querySelector('[data-home-search-btn]');
     const searchErr = document.querySelector('[data-home-search-error]');
     const ranges=[]; const step=40;
-    for(let s=1;s<=maxLevel;s+=step){ ranges.push({start:s,end:Math.min(maxLevel,s+step-1)}); }
+    for(let end=maxLevel; end>=1; end-=step){
+      const start = Math.max(1, end-step+1);
+      ranges.push({start, end});
+    }
     let activeRange = ranges[0];
     function card(entry){
       const div=document.createElement('div');
@@ -64,7 +67,7 @@
       if(count) count.textContent = `Showing ${limited.length} of ${list.length} guides`;
     }
     function applyFilters(){
-      let list = data.slice();
+      let list = data.slice().sort((a,b)=> (b.levelStart||0) - (a.levelStart||0));
       if(activeRange){ list = list.filter(e=>e.levelStart>=activeRange.start && e.levelEnd<=activeRange.end); }
       const query = (searchInput && searchInput.value || '').trim();
       if(query){
@@ -125,7 +128,10 @@
     const count = document.querySelector('[data-level-count]');
     if(!grid||!filters) return;
     const ranges=[]; const step=50;
-    for(let s=1;s<=maxLevel;s+=step){ ranges.push({start:s,end:Math.min(maxLevel,s+step-1)}); }
+    for(let end=maxLevel; end>=1; end-=step){
+      const start = Math.max(1, end-step+1);
+      ranges.push({start, end});
+    }
     function card(entry){
       const div=document.createElement('div');
       div.className='level-card';
@@ -157,7 +163,7 @@
     const allBtn=document.createElement('button'); allBtn.className='chip active'; allBtn.textContent='All 1-'+maxLevel; filters.appendChild(allBtn);
     allBtn.addEventListener('click',()=>{ filters.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); allBtn.classList.add('active'); render(data); });
     ranges.forEach(r=>{ const b=document.createElement('button'); b.className='chip'; b.textContent=`${r.start}-${r.end}`; b.addEventListener('click',()=>{ filters.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); b.classList.add('active'); const list=data.filter(e=>e.levelStart>=r.start && e.levelEnd<=r.end); render(list); }); filters.appendChild(b); });
-    render(data);
+    render(data.slice().sort((a,b)=> (b.levelStart||0) - (a.levelStart||0)));
   }
   function setupSearch(){
     const input=document.querySelector('[data-level-search-input]');
