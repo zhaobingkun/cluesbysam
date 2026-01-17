@@ -1,7 +1,7 @@
 
 (function(){
-  const data = window.CLUES_PLAYLIST || [];
-  const maxLevel = data.reduce((m,e)=> Math.max(m, e.levelEnd||0), 0) || 130;
+  const data = (window.CLUES_PLAYLIST || []).slice().sort((a,b)=> (b.levelStart||0) - (a.levelStart||0));
+  const maxLevel = data.reduce((m,e)=> Math.max(m, e.levelEnd||0), 0) || 134;
   const PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"320\" height=\"180\" viewBox=\"0 0 320 180\" fill=\"none\"><rect width=\"320\" height=\"180\" rx=\"16\" fill=\"%23f3fbfa\" stroke=\"%23cbe7e2\" stroke-width=\"4\"/><path d=\"M135 70l70 40-70 40V70z\" fill=\"%23d6246a\"/></svg>';
   function buildHref(lvl){ return `/level/${lvl}/`; }
   function findEntry(level){ const n = Number(level); return data.find(e=>n>=e.levelStart && n<=e.levelEnd); }

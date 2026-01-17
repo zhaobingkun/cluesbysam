@@ -40,8 +40,13 @@
   ];
 
   function injectFooterLinks() {
-    // Friend links injection disabled to avoid duplicate footer columns.
-    return;
+    const grid = document.querySelector('.footer-grid');
+    if (!grid || grid.querySelector('[data-friend-links]')) return;
+    const col = document.createElement('div');
+    col.setAttribute('data-friend-links','');
+    const list = friendLinks.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`).join('<br>');
+    col.innerHTML = `<strong>Friend Links</strong><p>${list}</p>`;
+    grid.appendChild(col);
   }
 
   function injectAnalytics() {
@@ -80,7 +85,8 @@
       'https://fonts.googleapis.com',
       'https://fonts.gstatic.com',
       'https://i.ytimg.com',
-      'https://www.youtube.com'
+      'https://www.youtube.com',
+      'https://www.youtube-nocookie.com'
     ];
     origins.forEach((href) => {
       if (head.querySelector(`link[rel=\"preconnect\"][href=\"${href}\"]`)) return;
@@ -134,7 +140,7 @@
           "description": entry.subtitle || `Walkthrough for Clues by Sam level ${lvl}.`,
           "thumbnailUrl": [thumb],
           "contentUrl": entry.href || `https://www.youtube.com/watch?v=${entry.videoId}`,
-          "embedUrl": `https://www.youtube.com/embed/${entry.videoId}`,
+          "embedUrl": `https://www.youtube-nocookie.com/embed/${entry.videoId}`,
           "publisher": { "@type": "Organization", "name": "CluesBySam.org" }
         });
       }
@@ -145,30 +151,48 @@
   const PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="480" height="270" viewBox="0 0 480 270" fill="none"><rect width="480" height="270" rx="16" fill="%23f3fbfa" stroke="%23cbe7e2" stroke-width="4"/><path d="M205 95l80 40-80 40V95z" fill="%23d6246a"/></svg>';
 
   function setupVideoPosters() {
-    document.querySelectorAll('.video-frame iframe').forEach((iframe) => {
-      const src = iframe.getAttribute('src') || '';
-      const match = src.match(/embed\/([\\w-]+)/);
-      if (!match || !match[1]) return;
-      const videoId = match[1];
-      const container = iframe.parentElement;
-      if (!container) return;
-      const posterUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    document.querySelectorAll('.video-frame').forEach((frame) => {
+      let videoId = frame.dataset.videoId || '';
+      let title = frame.dataset.title || '';
+      const existingIframe = frame.querySelector('iframe');
+      if (!videoId && existingIframe) {
+        const src = existingIframe.getAttribute('src') || '';
+        const match = src.match(/embed\\/([\\w-]+)/);
+        if (match && match[1]) videoId = match[1];
+        title = title || existingIframe.getAttribute('title') || '';
+        existingIframe.remove();
+      }
+      if (!videoId) return;
+      const posterUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
       const poster = document.createElement('div');
       poster.className = 'video-poster';
-      poster.innerHTML = `<img src=\"${posterUrl}\" alt=\"Video preview\"><div class=\"play-btn\"><span>Play</span></div>`;
-      container.innerHTML = '';
-      container.appendChild(poster);
+      const img = document.createElement('img');
+      img.src = posterUrl;
+      img.loading = 'lazy';
+      img.alt = title ? `${title} thumbnail` : 'Video preview';
+      if (frame.dataset.priority === 'high') {
+        img.setAttribute('fetchpriority', 'high');
+      }
+      const play = document.createElement('div');
+      play.className = 'play-btn';
+      play.innerHTML = '<span>Play</span>';
+      poster.appendChild(img);
+      poster.appendChild(play);
+      frame.innerHTML = '';
+      frame.appendChild(poster);
       poster.addEventListener('click', () => {
         const player = document.createElement('iframe');
-        const url = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+        const base = frame.dataset.embedUrl || `https://www.youtube-nocookie.com/embed/${videoId}`;
+        const url = base.includes('?') ? `${base}&autoplay=1` : `${base}?autoplay=1`;
         player.setAttribute('src', url);
         player.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
         player.setAttribute('allowfullscreen', 'true');
         player.setAttribute('loading', 'lazy');
+        player.referrerPolicy = 'strict-origin-when-cross-origin';
         player.style.width = '100%';
         player.style.height = '100%';
-        container.innerHTML = '';
-        container.appendChild(player);
+        frame.innerHTML = '';
+        frame.appendChild(player);
       });
     });
   }
