@@ -1,5 +1,23 @@
 window.CLUES_PLAYLIST = [
   {
+    "title": "Maybe a lesson on perseverance?",
+    "subtitle": "Maybe a lesson on perseverance?",
+    "href": "https://www.youtube.com/watch?v=pF9CN8V3ZHk",
+    "levelStart": 137,
+    "levelEnd": 137,
+    "slug": "level-137",
+    "videoId": "pF9CN8V3ZHk"
+  },
+  {
+    "title": "Clues by Sam | 18th January 2026",
+    "subtitle": "Clues by Sam | 18th January 2026",
+    "href": "https://www.youtube.com/watch?v=eqWsQwu5O_Q",
+    "levelStart": 136,
+    "levelEnd": 136,
+    "slug": "level-136",
+    "videoId": "eqWsQwu5O_Q"
+  },
+  {
     "title": "Clues by Sam | 17th January 2026",
     "subtitle": "Clues by Sam | 17th January 2026",
     "href": "https://www.youtube.com/watch?v=n69mVYCxb_c",
@@ -1214,4 +1232,4 @@ window.CLUES_PLAYLIST = [
     "slug": "level-1",
     "videoId": "9GSzDR4umTg"
   }
-];
+]
