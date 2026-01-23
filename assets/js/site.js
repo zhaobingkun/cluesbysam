@@ -16,7 +16,7 @@
     inputs.forEach((input) => {
       input.max = maxLevel;
       if (input.placeholder) {
-        input.placeholder = input.placeholder.replace(/1-\\d+/, `1-${maxLevel}`);
+        input.placeholder = input.placeholder.replace(/1-\d+/, `1-${maxLevel}`);
       }
     });
   }
@@ -169,7 +169,7 @@
       const existingIframe = frame.querySelector('iframe');
       if (!videoId && existingIframe) {
         const src = existingIframe.getAttribute('src') || '';
-        const match = src.match(/embed\\/([\\w-]+)/);
+        const match = src.match(/embed\/([\w-]+)/);
         if (match && match[1]) videoId = match[1];
         title = title || existingIframe.getAttribute('title') || '';
         existingIframe.remove();
@@ -218,7 +218,7 @@
     let currentLevel = parseInt((path.match(/level\/(\d+)/) || [])[1], 10);
     if (Number.isNaN(currentLevel)) {
       const badgeText = (document.querySelector('.badge') || {}).textContent || '';
-      currentLevel = parseInt((badgeText.match(/(\\d+)/) || [])[1], 10);
+      currentLevel = parseInt((badgeText.match(/(\d+)/) || [])[1], 10);
     }
     if (!currentLevel || Number.isNaN(currentLevel)) return;
 
