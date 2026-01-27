@@ -53,12 +53,40 @@
 
   function injectFooterLinks() {
     const grid = document.querySelector('.footer-grid');
-    if (!grid || grid.querySelector('[data-friend-links]')) return;
+    if (!grid) return;
+    const alreadyHasFriendLinks =
+      grid.querySelector('[data-friend-links]') ||
+      Array.from(grid.querySelectorAll('strong')).some((el) => (el.textContent || '').trim() === 'Friend Links');
+    if (alreadyHasFriendLinks) return;
     const col = document.createElement('div');
     col.setAttribute('data-friend-links','');
-    const list = friendLinks.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`).join('<br>');
+    const list = friendLinks
+      .map((link) => `<a href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`)
+      .concat(
+        '<a href="https://www.justsimple.tools" target="_blank" rel="noopener noreferrer"><img src="https://www.justsimple.tools/badge.svg" width="150" alt="Listed on JustSimple Tools" /></a>'
+      )
+      .join('<br>');
     col.innerHTML = `<strong>Friend Links</strong><p>${list}</p>`;
     grid.appendChild(col);
+  }
+
+  function ensureJustSimpleBadgeInFooter() {
+    const grid = document.querySelector('.footer-grid');
+    if (!grid) return;
+    if (grid.querySelector('a[href="https://www.justsimple.tools"]')) return;
+
+    const friendCol = Array.from(grid.children).find((child) => {
+      const strong = child.querySelector('strong');
+      return strong && (strong.textContent || '').trim() === 'Friend Links';
+    });
+    if (!friendCol) return;
+    const p = friendCol.querySelector('p');
+    if (!p) return;
+
+    p.insertAdjacentHTML(
+      'beforeend',
+      '<br><a href="https://www.justsimple.tools" target="_blank" rel="noopener noreferrer"><img src="https://www.justsimple.tools/badge.svg" width="150" alt="Listed on JustSimple Tools" /></a>'
+    );
   }
 
   function injectAnalytics() {
@@ -366,6 +394,7 @@
     setupVideoPosters();
     setupLevelNavThumbnails();
     injectFooterLinks();
+    ensureJustSimpleBadgeInFooter();
     injectStructuredData();
     injectPreconnects();
     scheduleAnalytics();
