@@ -1,5 +1,23 @@
 window.CLUES_PLAYLIST = [
   {
+    "title": "Clues by Sam | 27th January 2026",
+    "subtitle": "Clues by Sam | 27th January 2026",
+    "href": "https://www.youtube.com/watch?v=VFN9Jv-pEv4",
+    "levelStart": 145,
+    "levelEnd": 145,
+    "slug": "level-145",
+    "videoId": "VFN9Jv-pEv4"
+  },
+  {
+    "title": "Double CbS Monday! 26th January 2026",
+    "subtitle": "Double CbS Monday! 26th January 2026",
+    "href": "https://www.youtube.com/watch?v=yS4KJrVDrBY",
+    "levelStart": 144,
+    "levelEnd": 144,
+    "slug": "level-144",
+    "videoId": "yS4KJrVDrBY"
+  },
+  {
     "title": "Clues by Sam | 25th January 2026",
     "subtitle": "Clues by Sam | 25th January 2026",
     "href": "https://www.youtube.com/watch?v=OX1iyCXbd_s",
