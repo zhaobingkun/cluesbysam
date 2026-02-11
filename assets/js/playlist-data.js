@@ -1,5 +1,95 @@
 window.CLUES_PLAYLIST = [
   {
+    "title": "Clues by Sam | 9th February 2026",
+    "subtitle": "Clues by Sam | 9th February 2026",
+    "href": "https://www.youtube.com/watch?v=1JEeBmT-XF4",
+    "levelStart": 158,
+    "levelEnd": 158,
+    "slug": "level-158",
+    "videoId": "1JEeBmT-XF4"
+  },
+  {
+    "title": "Clues by Sam | 8th February 2026",
+    "subtitle": "Clues by Sam | 8th February 2026",
+    "href": "https://www.youtube.com/watch?v=QeZbAqcAYRQ",
+    "levelStart": 157,
+    "levelEnd": 157,
+    "slug": "level-157",
+    "videoId": "QeZbAqcAYRQ"
+  },
+  {
+    "title": "Clues by Sam | 7th February 2026",
+    "subtitle": "Clues by Sam | 7th February 2026",
+    "href": "https://www.youtube.com/watch?v=q6pRUBAQJ5A",
+    "levelStart": 156,
+    "levelEnd": 156,
+    "slug": "level-156",
+    "videoId": "q6pRUBAQJ5A"
+  },
+  {
+    "title": "Clues by Sam | 6th February 2026",
+    "subtitle": "Clues by Sam | 6th February 2026",
+    "href": "https://www.youtube.com/watch?v=GKGh4HFopuI",
+    "levelStart": 155,
+    "levelEnd": 155,
+    "slug": "level-155",
+    "videoId": "GKGh4HFopuI"
+  },
+  {
+    "title": "Clues by Sam | 5th February 2026",
+    "subtitle": "Clues by Sam | 5th February 2026",
+    "href": "https://www.youtube.com/watch?v=kfTNNBaYul4",
+    "levelStart": 154,
+    "levelEnd": 154,
+    "slug": "level-154",
+    "videoId": "kfTNNBaYul4"
+  },
+  {
+    "title": "Clues by Sam | 4th February 2026",
+    "subtitle": "Clues by Sam | 4th February 2026",
+    "href": "https://www.youtube.com/watch?v=ZBr4B8NQp2I",
+    "levelStart": 153,
+    "levelEnd": 153,
+    "slug": "level-153",
+    "videoId": "ZBr4B8NQp2I"
+  },
+  {
+    "title": "Clues by Sam | 3rd February 2026",
+    "subtitle": "Clues by Sam | 3rd February 2026",
+    "href": "https://www.youtube.com/watch?v=seaXUYFsyX4",
+    "levelStart": 152,
+    "levelEnd": 152,
+    "slug": "level-152",
+    "videoId": "seaXUYFsyX4"
+  },
+  {
+    "title": "Double Monday | Clues by Sam",
+    "subtitle": "Double Monday | Clues by Sam",
+    "href": "https://www.youtube.com/watch?v=o-DzmvXE0uo",
+    "levelStart": 151,
+    "levelEnd": 151,
+    "slug": "level-151",
+    "videoId": "o-DzmvXE0uo"
+  },
+  {
+    "title": "Clues by Sam | 1st February 2026",
+    "subtitle": "Clues by Sam | 1st February 2026",
+    "href": "https://www.youtube.com/watch?v=La9o18N6JUA",
+    "levelStart": 150,
+    "levelEnd": 150,
+    "slug": "level-150",
+    "videoId": "La9o18N6JUA"
+  },
+  {
+    "title": "Clues by Sam | 31st January 2026",
+    "subtitle": "Clues by Sam | 31st January 2026",
+    "href": "https://www.youtube.com/watch?v=OG_tDKxPBzs",
+    "levelStart": 149,
+    "levelEnd": 149,
+    "slug": "level-149",
+    "videoId": "OG_tDKxPBzs"
+  },
+  {
     "title": "Clues by Sam | 30th January 2026",
     "subtitle": "Clues by Sam | 30th January 2026",
     "href": "https://www.youtube.com/watch?v=iIw-B6KiW1k",
