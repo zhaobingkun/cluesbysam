@@ -1,5 +1,68 @@
 window.CLUES_PLAYLIST = [
   {
+    "title": "Clues by Sam | 16th February 2026",
+    "subtitle": "Clues by Sam | 16th February 2026",
+    "href": "https://www.youtube.com/watch?v=u-_SPqGkQmI",
+    "levelStart": 165,
+    "levelEnd": 165,
+    "slug": "level-165",
+    "videoId": "u-_SPqGkQmI"
+  },
+  {
+    "title": "Clues by Sam | 15th February 2026",
+    "subtitle": "Clues by Sam | 15th February 2026",
+    "href": "https://www.youtube.com/watch?v=8WieFdOtrDY",
+    "levelStart": 164,
+    "levelEnd": 164,
+    "slug": "level-164",
+    "videoId": "8WieFdOtrDY"
+  },
+  {
+    "title": "Clues by Sam | 14th February 2026",
+    "subtitle": "Clues by Sam | 14th February 2026",
+    "href": "https://www.youtube.com/watch?v=tPZfPHtqUzg",
+    "levelStart": 163,
+    "levelEnd": 163,
+    "slug": "level-163",
+    "videoId": "tPZfPHtqUzg"
+  },
+  {
+    "title": "Clues by Sam | 13th February 2026",
+    "subtitle": "Clues by Sam | 13th February 2026",
+    "href": "https://www.youtube.com/watch?v=zjmoLev9jm0",
+    "levelStart": 162,
+    "levelEnd": 162,
+    "slug": "level-162",
+    "videoId": "zjmoLev9jm0"
+  },
+  {
+    "title": "Clues by Sam | 12th February 2026",
+    "subtitle": "Clues by Sam | 12th February 2026",
+    "href": "https://www.youtube.com/watch?v=3kuT8JoWGH0",
+    "levelStart": 161,
+    "levelEnd": 161,
+    "slug": "level-161",
+    "videoId": "3kuT8JoWGH0"
+  },
+  {
+    "title": "Clues by Sam | 11th February 2026",
+    "subtitle": "Clues by Sam | 11th February 2026",
+    "href": "https://www.youtube.com/watch?v=h-PYBmvkIJc",
+    "levelStart": 160,
+    "levelEnd": 160,
+    "slug": "level-160",
+    "videoId": "h-PYBmvkIJc"
+  },
+  {
+    "title": "Clues by Sam | 10th February 2026",
+    "subtitle": "Clues by Sam | 10th February 2026",
+    "href": "https://www.youtube.com/watch?v=cwrc8FDNuuU",
+    "levelStart": 159,
+    "levelEnd": 159,
+    "slug": "level-159",
+    "videoId": "cwrc8FDNuuU"
+  },
+  {
     "title": "Clues by Sam | 9th February 2026",
     "subtitle": "Clues by Sam | 9th February 2026",
     "href": "https://www.youtube.com/watch?v=1JEeBmT-XF4",
