@@ -1,5 +1,113 @@
 window.CLUES_PLAYLIST = [
   {
+    "title": "Clues by Sam | 28th February 2026",
+    "subtitle": "Clues by Sam | 28th February 2026",
+    "href": "https://www.youtube.com/watch?v=-AUDJmxE_0s",
+    "levelStart": 177,
+    "levelEnd": 177,
+    "slug": "level-177",
+    "videoId": "-AUDJmxE_0s"
+  },
+  {
+    "title": "Clues by Sam | 27th February 2026",
+    "subtitle": "Clues by Sam | 27th February 2026",
+    "href": "https://www.youtube.com/watch?v=75X32LK86MY",
+    "levelStart": 176,
+    "levelEnd": 176,
+    "slug": "level-176",
+    "videoId": "75X32LK86MY"
+  },
+  {
+    "title": "Clues by Sam | 26th February 2026",
+    "subtitle": "Clues by Sam | 26th February 2026",
+    "href": "https://www.youtube.com/watch?v=o_cYX_QeiUM",
+    "levelStart": 175,
+    "levelEnd": 175,
+    "slug": "level-175",
+    "videoId": "o_cYX_QeiUM"
+  },
+  {
+    "title": "Clues by Sam | 25th February 2026",
+    "subtitle": "Clues by Sam | 25th February 2026",
+    "href": "https://www.youtube.com/watch?v=tnhdTZSFD7k",
+    "levelStart": 174,
+    "levelEnd": 174,
+    "slug": "level-174",
+    "videoId": "tnhdTZSFD7k"
+  },
+  {
+    "title": "Clues by Sam | 24th February 2026",
+    "subtitle": "Clues by Sam | 24th February 2026",
+    "href": "https://www.youtube.com/watch?v=Kt9cjGRG8kE",
+    "levelStart": 173,
+    "levelEnd": 173,
+    "slug": "level-173",
+    "videoId": "Kt9cjGRG8kE"
+  },
+  {
+    "title": "Clues by Sam | 23rd February 2026",
+    "subtitle": "Clues by Sam | 23rd February 2026",
+    "href": "https://www.youtube.com/watch?v=XjDFZG3XvOU",
+    "levelStart": 172,
+    "levelEnd": 172,
+    "slug": "level-172",
+    "videoId": "XjDFZG3XvOU"
+  },
+  {
+    "title": "Clues by Sam | 22nd February 2026",
+    "subtitle": "Clues by Sam | 22nd February 2026",
+    "href": "https://www.youtube.com/watch?v=cT1rAumA5s4",
+    "levelStart": 171,
+    "levelEnd": 171,
+    "slug": "level-171",
+    "videoId": "cT1rAumA5s4"
+  },
+  {
+    "title": "Clues by Sam | 21st February 2026",
+    "subtitle": "Clues by Sam | 21st February 2026",
+    "href": "https://www.youtube.com/watch?v=CveA5Y_eazw",
+    "levelStart": 170,
+    "levelEnd": 170,
+    "slug": "level-170",
+    "videoId": "CveA5Y_eazw"
+  },
+  {
+    "title": "Clues by Sam | 20th February 2026",
+    "subtitle": "Clues by Sam | 20th February 2026",
+    "href": "https://www.youtube.com/watch?v=LI9J1SerJZU",
+    "levelStart": 169,
+    "levelEnd": 169,
+    "slug": "level-169",
+    "videoId": "LI9J1SerJZU"
+  },
+  {
+    "title": "Clues by Sam | 19th February 2026",
+    "subtitle": "Clues by Sam | 19th February 2026",
+    "href": "https://www.youtube.com/watch?v=MDH3sXssbgw",
+    "levelStart": 168,
+    "levelEnd": 168,
+    "slug": "level-168",
+    "videoId": "MDH3sXssbgw"
+  },
+  {
+    "title": "Clues by Sam | 18th February 2026",
+    "subtitle": "Clues by Sam | 18th February 2026",
+    "href": "https://www.youtube.com/watch?v=bG7S_vjhI2o",
+    "levelStart": 167,
+    "levelEnd": 167,
+    "slug": "level-167",
+    "videoId": "bG7S_vjhI2o"
+  },
+  {
+    "title": "Clues by Sam | 17th February 2026",
+    "subtitle": "Clues by Sam | 17th February 2026",
+    "href": "https://www.youtube.com/watch?v=Jh4YR-oUCDo",
+    "levelStart": 166,
+    "levelEnd": 166,
+    "slug": "level-166",
+    "videoId": "Jh4YR-oUCDo"
+  },
+  {
     "title": "Clues by Sam | 16th February 2026",
     "subtitle": "Clues by Sam | 16th February 2026",
     "href": "https://www.youtube.com/watch?v=u-_SPqGkQmI",
