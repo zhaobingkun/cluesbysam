@@ -122,8 +122,6 @@
     const head = document.head;
     if (!head) return;
     const origins = [
-      'https://fonts.googleapis.com',
-      'https://fonts.gstatic.com',
       'https://i.ytimg.com',
       'https://img.youtube.com',
       'https://www.youtube.com',
