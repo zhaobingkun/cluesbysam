@@ -92,6 +92,7 @@ button, .btn {
 .home-levels .cards { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .home-levels .search-row { display: grid; grid-template-columns: 1fr auto; gap: 0.6rem; margin: 1rem 0 0.2rem; }
 .home-levels .chips { justify-content: flex-start; }
+.hero-landing, .home-levels { content-visibility: auto; contain-intrinsic-size: 900px; }
 .home-levels input[type=text] { width: 100%; }
 .footer { background: #100927; color: #e8e5ff; padding: 2.5rem 0; margin-top: 3rem; }
 .footer a { color: #d9d2ff; }

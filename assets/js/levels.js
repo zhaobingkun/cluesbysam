@@ -45,7 +45,7 @@
       const img = document.createElement('img');
       img.className = 'card-thumb';
       img.loading = 'lazy';
-      img.src = entry.videoId ? `https://img.youtube.com/vi/${entry.videoId}/hqdefault.jpg` : PLACEHOLDER_IMG;
+      img.src = entry.videoId ? `https://img.youtube.com/vi/${entry.videoId}/mqdefault.jpg` : PLACEHOLDER_IMG;
       img.alt = `Clues by Sam Level ${entry.levelStart} thumbnail`;
       img.width = 320;
       img.height = 180;
@@ -70,7 +70,7 @@
       return div;
     }
     function render(list){
-      const limited = list.slice(0,24);
+      const limited = list.slice(0,12);
       grid.innerHTML='';
       limited.forEach(e=> grid.appendChild(card(e)));
       if(count) count.textContent = `Showing ${limited.length} of ${list.length} guides`;

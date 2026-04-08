@@ -63,7 +63,7 @@
     const list = friendLinks
       .map((link) => `<a href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`)
       .concat(
-        '<a href="https://www.justsimple.tools" target="_blank" rel="noopener noreferrer"><img src="https://www.justsimple.tools/badge.svg" width="150" alt="Listed on JustSimple Tools" /></a>'
+        '<a href="https://www.justsimple.tools" target="_blank" rel="noopener noreferrer"><img src="https://www.justsimple.tools/badge.svg" width="150" height="54" loading="lazy" decoding="async" alt="Listed on JustSimple Tools" /></a>'
       )
       .join('<br>');
     col.innerHTML = `<strong>Friend Links</strong><p>${list}</p>`;
@@ -85,7 +85,7 @@
 
     p.insertAdjacentHTML(
       'beforeend',
-      '<br><a href="https://www.justsimple.tools" target="_blank" rel="noopener noreferrer"><img src="https://www.justsimple.tools/badge.svg" width="150" alt="Listed on JustSimple Tools" /></a>'
+      '<br><a href="https://www.justsimple.tools" target="_blank" rel="noopener noreferrer"><img src="https://www.justsimple.tools/badge.svg" width="150" height="54" loading="lazy" decoding="async" alt="Listed on JustSimple Tools" /></a>'
     );
   }
 
@@ -125,6 +125,7 @@
       'https://fonts.googleapis.com',
       'https://fonts.gstatic.com',
       'https://i.ytimg.com',
+      'https://img.youtube.com',
       'https://www.youtube.com',
       'https://www.youtube-nocookie.com'
     ];
@@ -203,13 +204,23 @@
         existingIframe.remove();
       }
       if (!videoId) return;
-      const posterUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+      const posterUrl = `https://i.ytimg.com/vi_webp/${videoId}/hqdefault.webp`;
+      const posterFallback = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
       const poster = document.createElement('div');
       poster.className = 'video-poster';
       const img = document.createElement('img');
       img.src = posterUrl;
       img.loading = 'lazy';
+      img.width = 480;
+      img.height = 360;
       img.alt = title ? `${title} thumbnail` : 'Video preview';
+      img.onerror = () => {
+        if (img.src !== posterFallback) {
+          img.src = posterFallback;
+          return;
+        }
+        img.src = PLACEHOLDER_IMG;
+      };
       if (frame.dataset.priority === 'high') {
         img.setAttribute('fetchpriority', 'high');
       }
