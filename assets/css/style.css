@@ -50,6 +50,9 @@ button, .btn {
 .hero-compact { padding: 1.6rem 0 1rem; }
 .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; align-items: flex-start; }
 .hero-player .play-embed { height: min(75vh, 620px); }
+.home-play-section { padding: 0.35rem 0 1.2rem; }
+.home-play-section .hero-player { max-width: 1320px; }
+.home-play-section .play-embed { height: min(84vh, 760px); }
 .level-page .hero { padding: 0.6rem 0 0.35rem; }
 .level-page .section { padding: 0.7rem 0 0.9rem; }
 .play-page .hero-compact { padding: 0.45rem 0 0.7rem; }
