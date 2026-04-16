@@ -14,6 +14,15 @@
   syncMaxInputs();
   function buildHref(lvl){ return `/level/${lvl}/`; }
   function findEntry(level){ const n = Number(level); return data.find(e=>n>=e.levelStart && n<=e.levelEnd); }
+  function extractDate(entry){
+    const raw = entry.subtitle || entry.title || '';
+    if(raw.includes('|')) return raw.split('|').slice(-1)[0].trim();
+    const match = raw.match(/(\d{1,2}(?:st|nd|rd|th) [A-Za-z]+ \d{4})$/);
+    return match ? match[1] : raw;
+  }
+  function displayTitle(entry){
+    return `Clues by Sam Answer & Walkthrough | ${extractDate(entry)}`;
+  }
   function showInlineError(scope, msg){
     let err = scope.querySelector('.jump-error');
     if(!err){
@@ -46,7 +55,7 @@
       img.className = 'card-thumb';
       img.loading = 'lazy';
       img.src = entry.videoId ? `https://img.youtube.com/vi/${entry.videoId}/mqdefault.jpg` : PLACEHOLDER_IMG;
-      img.alt = `Clues by Sam Level ${entry.levelStart} thumbnail`;
+      img.alt = `Clues by Sam answer thumbnail for ${extractDate(entry)}`;
       img.width = 320;
       img.height = 180;
       img.onerror = ()=>{ img.src = PLACEHOLDER_IMG; };
@@ -54,10 +63,10 @@
       badge.className = 'badge';
       badge.textContent = `Level ${entry.levelStart}`;
       const title = document.createElement('h3');
-      title.textContent = entry.title;
+      title.textContent = displayTitle(entry);
       const meta = document.createElement('p');
       meta.className = 'small';
-      meta.textContent = entry.subtitle;
+      meta.textContent = extractDate(entry);
       const link = document.createElement('a');
       link.className = 'btn btn-secondary';
       link.href = buildHref(entry.levelStart);
@@ -148,15 +157,15 @@
       img.className = 'card-thumb';
       img.loading = 'lazy';
       img.src = entry.videoId ? `https://img.youtube.com/vi/${entry.videoId}/hqdefault.jpg` : PLACEHOLDER_IMG;
-      img.alt = `Clues by Sam Level ${entry.levelStart} thumbnail`;
+      img.alt = `Clues by Sam answer thumbnail for ${extractDate(entry)}`;
       img.width = 320;
       img.height = 180;
       img.onerror = ()=>{ img.src = PLACEHOLDER_IMG; };
       const title = document.createElement('h3');
-      title.textContent = entry.title;
+      title.textContent = displayTitle(entry);
       const meta = document.createElement('p');
       meta.className = 'small';
-      meta.textContent = entry.subtitle;
+      meta.textContent = extractDate(entry);
       const link = document.createElement('a');
       link.className = 'btn btn-secondary';
       link.href = buildHref(entry.levelStart);
