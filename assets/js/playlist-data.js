@@ -1,5 +1,85 @@
 window.CLUES_PLAYLIST = [
   {
+    "level": 228,
+    "title": "Clues by Sam | 24th April 2026",
+    "videoId": "fb616C23-tQ",
+    "subtitle": "Clues by Sam | 24th April 2026",
+    "href": "https://www.youtube.com/watch?v=fb616C23-tQ",
+    "levelStart": 228,
+    "levelEnd": 228,
+    "slug": "level-228"
+  },
+  {
+    "level": 227,
+    "title": "Clues by Sam | 23rd April 2026",
+    "videoId": "ZVCG15SeKn8",
+    "subtitle": "Clues by Sam | 23rd April 2026",
+    "href": "https://www.youtube.com/watch?v=ZVCG15SeKn8",
+    "levelStart": 227,
+    "levelEnd": 227,
+    "slug": "level-227"
+  },
+  {
+    "level": 226,
+    "title": "Clues by Sam | 22nd April 2026",
+    "videoId": "YPF8m2F72zM",
+    "subtitle": "Clues by Sam | 22nd April 2026",
+    "href": "https://www.youtube.com/watch?v=YPF8m2F72zM",
+    "levelStart": 226,
+    "levelEnd": 226,
+    "slug": "level-226"
+  },
+  {
+    "level": 225,
+    "title": "Clues by Sam | 21st April 2026",
+    "videoId": "nu5UdmZ_BSY",
+    "subtitle": "Clues by Sam | 21st April 2026",
+    "href": "https://www.youtube.com/watch?v=nu5UdmZ_BSY",
+    "levelStart": 225,
+    "levelEnd": 225,
+    "slug": "level-225"
+  },
+  {
+    "level": 224,
+    "title": "Clues by Sam | 19th April 2026",
+    "videoId": "CWh0CfLsDhU",
+    "subtitle": "Clues by Sam | 19th April 2026",
+    "href": "https://www.youtube.com/watch?v=CWh0CfLsDhU",
+    "levelStart": 224,
+    "levelEnd": 224,
+    "slug": "level-224"
+  },
+  {
+    "level": 223,
+    "title": "Clues by Sam | 18th April 2026",
+    "videoId": "CMUzyJBySk4",
+    "subtitle": "Clues by Sam | 18th April 2026",
+    "href": "https://www.youtube.com/watch?v=CMUzyJBySk4",
+    "levelStart": 223,
+    "levelEnd": 223,
+    "slug": "level-223"
+  },
+  {
+    "level": 222,
+    "title": "Clues by Sam | 17th April 2026",
+    "videoId": "1TUBkQavgtU",
+    "subtitle": "Clues by Sam | 17th April 2026",
+    "href": "https://www.youtube.com/watch?v=1TUBkQavgtU",
+    "levelStart": 222,
+    "levelEnd": 222,
+    "slug": "level-222"
+  },
+  {
+    "level": 221,
+    "title": "Clues by Sam | 16th April 2026",
+    "videoId": "e8_Xj872VVk",
+    "subtitle": "Clues by Sam | 16th April 2026",
+    "href": "https://www.youtube.com/watch?v=e8_Xj872VVk",
+    "levelStart": 221,
+    "levelEnd": 221,
+    "slug": "level-221"
+  },
+  {
     "level": 220,
     "title": "Clues by Sam | 15th April 2026",
     "videoId": "U9An_gVPK0M",
