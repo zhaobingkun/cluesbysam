@@ -13,7 +13,7 @@ PLAYLIST_JS = ROOT / "assets/js/playlist-data.js"
 SITEMAP_XML = ROOT / "sitemap.xml"
 INDEX_HTML = ROOT / "index.html"
 LEVELS_HTML = ROOT / "levels.html"
-MAX_HTML_GLOBS = ["*.html", "level/*/index.html"]
+MAX_HTML_GLOBS = ["*.html", "blog/*.html", "level/*/index.html"]
 
 MONTHS = {
     "January": 1,
@@ -307,7 +307,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div><strong>{{brand}}</strong><p class="small">Fan-made logic walkthroughs and video solutions.</p></div>
+      <div><strong>{Clues by Sam Guide}</strong><p class="small">Fan-made logic walkthroughs and video solutions.</p></div>
       <div><strong>Quick Links</strong><p><a href="/levels.html">All Levels</a><br><a href="/game.html">Play Online</a><br><a href="/blog.html">Blog</a></p></div>
       <div><strong>Legal</strong><p><a href="/privacy.html">Privacy</a><br><a href="/terms-of-service.html">Terms</a></p></div>
     </div>
@@ -328,8 +328,8 @@ def update_index_html(entries: list[dict], max_level: int) -> None:
     latest_date = extract_date_for_entry(latest)
     latest_title_html = format_title(latest_date, html=True)
     latest_title_attr = format_title(latest_date, html=False)
-    text = text.replace('max="212"', f'max="{max_level}"')
-    text = text.replace("1-212", f"1-{max_level}")
+    text = re.sub(r'max="\d+"', f'max="{max_level}"', text)
+    text = re.sub(r"1-\d+", f"1-{max_level}", text)
     text = re.sub(r"📅 \d+\+ Daily Levels", f"📅 {max_level}+ Daily Levels", text)
     text = re.sub(
         r"<h2 style=\"margin:0 0 0.5rem;\">.*?</h2>",
@@ -351,8 +351,8 @@ def update_index_html(entries: list[dict], max_level: int) -> None:
         count=1,
     )
     text = re.sub(
-        r'<a class="btn btn-secondary" href="/level/\d+/">Open latest answer</a>',
-        f'<a class="btn btn-secondary" href="/level/{latest["level"]}/">Open latest answer</a>',
+        r'(<a class="btn btn-secondary" href=")/level/\d+(/">Open today&apos;s answer</a>)',
+        rf'\1/level/{latest["level"]}\2',
         text,
         count=1,
     )
@@ -366,17 +366,54 @@ def update_index_html(entries: list[dict], max_level: int) -> None:
 
 def update_levels_html(entries: list[dict], max_level: int) -> None:
     text = LEVELS_HTML.read_text()
-    text = text.replace('max="212"', f'max="{max_level}"')
-    text = text.replace("1-212", f"1-{max_level}")
-    text = re.sub(
-        r'<a class="archive-jump" href="/level/\d+/"><strong>Latest 30</strong><span>.*?</span></a>',
-        f'<a class="archive-jump" href="/level/{max_level}/"><strong>Latest 30</strong><span>Levels {max(1, max_level - 29)}-{max_level} with the newest answers and walkthroughs.</span></a>',
-        text,
-        count=1,
-    )
-    text = re.sub(
-        r'<a class="archive-jump" href="/level/206/"><strong>April 2026</strong><span>.*?</span></a>',
-        f'<a class="archive-jump" href="/level/206/"><strong>April 2026</strong><span>Levels 206-{max_level} covering 1st-{extract_date(entries[0]["title"]).split()[0]} April 2026.</span></a>',
+    text = re.sub(r'max="\d+"', f'max="{max_level}"', text)
+    text = re.sub(r"1-\d+", f"1-{max_level}", text)
+
+    month_groups: list[tuple[str, list[int]]] = []
+    seen_months: dict[str, list[int]] = {}
+    for entry in entries:
+        try:
+            date_text = extract_date_for_entry(entry)
+        except ValueError:
+            continue
+        parts = date_text.split()
+        if len(parts) < 3:
+            continue
+        month_name, year_text = parts[-2], parts[-1]
+        if month_name not in MONTHS or not year_text.isdigit():
+            continue
+        key = f"{month_name} {year_text}"
+        if key not in seen_months:
+            seen_months[key] = []
+            month_groups.append((key, seen_months[key]))
+        seen_months[key].append(entry["level"])
+
+    jumps = [
+        f'<a class="archive-jump" href="/level/{max_level}/"><strong>Latest 30</strong><span>Levels {max(1, max_level - 29)}-{max_level} with the newest answers and walkthroughs.</span></a>'
+    ]
+    recent_groups = month_groups[:5]
+    for label, levels in recent_groups:
+        month_max = max(levels)
+        month_min = min(levels)
+        jumps.append(
+            f'<a class="archive-jump" href="/level/{month_max}/"><strong>{label}</strong><span>Levels {month_min}-{month_max} covering the {label} puzzle run.</span></a>'
+        )
+    older_2025 = []
+    for entry in entries:
+        try:
+            date_text = extract_date_for_entry(entry)
+        except ValueError:
+            continue
+        if date_text.endswith("2025"):
+            older_2025.append(entry["level"])
+    if older_2025:
+        jumps.append(
+            f'<a class="archive-jump" href="/level/{max(older_2025)}/"><strong>2025 Archive</strong><span>Levels {min(older_2025)}-{max(older_2025)} from September to December 2025.</span></a>'
+        )
+    archive_jump_html = "\n        ".join(jumps)
+    archive_pattern = re.compile(r'(<div class="archive-jumps">\n)(.*?)(\n\s*</div>)', re.S)
+    text = archive_pattern.sub(
+        lambda match: match.group(1) + "        " + archive_jump_html + match.group(3),
         text,
         count=1,
     )
@@ -442,7 +479,8 @@ def update_html_max_values(max_level: int) -> None:
     for pattern in MAX_HTML_GLOBS:
         for path in ROOT.glob(pattern):
             text = path.read_text()
-            updated = text.replace('max="212"', f'max="{max_level}"').replace("1-212", f"1-{max_level}")
+            updated = re.sub(r'max="\d+"', f'max="{max_level}"', text)
+            updated = re.sub(r"1-\d+", f"1-{max_level}", updated)
             if updated != text:
                 path.write_text(updated)
 

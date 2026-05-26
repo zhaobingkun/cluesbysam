@@ -1,5 +1,285 @@
 window.CLUES_PLAYLIST = [
   {
+    "level": 256,
+    "title": "Clues by Sam | 25th May 2026",
+    "videoId": "vZYLFJTR-40",
+    "subtitle": "Clues by Sam | 25th May 2026",
+    "href": "https://www.youtube.com/watch?v=vZYLFJTR-40",
+    "levelStart": 256,
+    "levelEnd": 256,
+    "slug": "level-256"
+  },
+  {
+    "level": 255,
+    "title": "Clues by Sam | 24th May 2026",
+    "videoId": "44VUA1Iz7vM",
+    "subtitle": "Clues by Sam | 24th May 2026",
+    "href": "https://www.youtube.com/watch?v=44VUA1Iz7vM",
+    "levelStart": 255,
+    "levelEnd": 255,
+    "slug": "level-255"
+  },
+  {
+    "level": 254,
+    "title": "Clues by Sam | 23rd May 2026",
+    "videoId": "NOZRkPd6B5A",
+    "subtitle": "Clues by Sam | 23rd May 2026",
+    "href": "https://www.youtube.com/watch?v=NOZRkPd6B5A",
+    "levelStart": 254,
+    "levelEnd": 254,
+    "slug": "level-254"
+  },
+  {
+    "level": 253,
+    "title": "Clues by Sam | 22nd May 2026",
+    "videoId": "g_CzlcjD428",
+    "subtitle": "Clues by Sam | 22nd May 2026",
+    "href": "https://www.youtube.com/watch?v=g_CzlcjD428",
+    "levelStart": 253,
+    "levelEnd": 253,
+    "slug": "level-253"
+  },
+  {
+    "level": 252,
+    "title": "Clues by Sam | 21st May 2026",
+    "videoId": "vzT2qK47bnw",
+    "subtitle": "Clues by Sam | 21st May 2026",
+    "href": "https://www.youtube.com/watch?v=vzT2qK47bnw",
+    "levelStart": 252,
+    "levelEnd": 252,
+    "slug": "level-252"
+  },
+  {
+    "level": 251,
+    "title": "Clues by Sam | 19th May 2026",
+    "videoId": "egMasi5oyz4",
+    "subtitle": "Clues by Sam | 19th May 2026",
+    "href": "https://www.youtube.com/watch?v=egMasi5oyz4",
+    "levelStart": 251,
+    "levelEnd": 251,
+    "slug": "level-251"
+  },
+  {
+    "level": 250,
+    "title": "Clues by Sam | 17th May 2026",
+    "videoId": "M2X339SwzgE",
+    "subtitle": "Clues by Sam | 17th May 2026",
+    "href": "https://www.youtube.com/watch?v=M2X339SwzgE",
+    "levelStart": 250,
+    "levelEnd": 250,
+    "slug": "level-250"
+  },
+  {
+    "level": 249,
+    "title": "Clues by Sam | 16th May 2026",
+    "videoId": "EJmgJ6tq3Y8",
+    "subtitle": "Clues by Sam | 16th May 2026",
+    "href": "https://www.youtube.com/watch?v=EJmgJ6tq3Y8",
+    "levelStart": 249,
+    "levelEnd": 249,
+    "slug": "level-249"
+  },
+  {
+    "level": 248,
+    "title": "Clues by Sam | 15th May 2026",
+    "videoId": "phEmFaEvX_k",
+    "subtitle": "Clues by Sam | 15th May 2026",
+    "href": "https://www.youtube.com/watch?v=phEmFaEvX_k",
+    "levelStart": 248,
+    "levelEnd": 248,
+    "slug": "level-248"
+  },
+  {
+    "level": 247,
+    "title": "Clues by Sam | 14th May 2026",
+    "videoId": "e1rnNrS7aOI",
+    "subtitle": "Clues by Sam | 14th May 2026",
+    "href": "https://www.youtube.com/watch?v=e1rnNrS7aOI",
+    "levelStart": 247,
+    "levelEnd": 247,
+    "slug": "level-247"
+  },
+  {
+    "level": 246,
+    "title": "Clues by Sam | 13th May 2026",
+    "videoId": "c8TSTNuWAxE",
+    "subtitle": "Clues by Sam | 13th May 2026",
+    "href": "https://www.youtube.com/watch?v=c8TSTNuWAxE",
+    "levelStart": 246,
+    "levelEnd": 246,
+    "slug": "level-246"
+  },
+  {
+    "level": 245,
+    "title": "Clues by Sam | 12th May 2026",
+    "videoId": "cH5LZt_E0gU",
+    "subtitle": "Clues by Sam | 12th May 2026",
+    "href": "https://www.youtube.com/watch?v=cH5LZt_E0gU",
+    "levelStart": 245,
+    "levelEnd": 245,
+    "slug": "level-245"
+  },
+  {
+    "level": 244,
+    "title": "Clues by Sam | 11th May 2026",
+    "videoId": "2l8bmcdSIFI",
+    "subtitle": "Clues by Sam | 11th May 2026",
+    "href": "https://www.youtube.com/watch?v=2l8bmcdSIFI",
+    "levelStart": 244,
+    "levelEnd": 244,
+    "slug": "level-244"
+  },
+  {
+    "level": 243,
+    "title": "Clues by Sam | 10th May 2026",
+    "videoId": "x0XeOicmjaA",
+    "subtitle": "Clues by Sam | 10th May 2026",
+    "href": "https://www.youtube.com/watch?v=x0XeOicmjaA",
+    "levelStart": 243,
+    "levelEnd": 243,
+    "slug": "level-243"
+  },
+  {
+    "level": 242,
+    "title": "Clues by Sam | 9th May 2026",
+    "videoId": "MJfv6usxtcw",
+    "subtitle": "Clues by Sam | 9th May 2026",
+    "href": "https://www.youtube.com/watch?v=MJfv6usxtcw",
+    "levelStart": 242,
+    "levelEnd": 242,
+    "slug": "level-242"
+  },
+  {
+    "level": 241,
+    "title": "Clues by Sam | 8th May 2026",
+    "videoId": "0rjO5ukidcY",
+    "subtitle": "Clues by Sam | 8th May 2026",
+    "href": "https://www.youtube.com/watch?v=0rjO5ukidcY",
+    "levelStart": 241,
+    "levelEnd": 241,
+    "slug": "level-241"
+  },
+  {
+    "level": 240,
+    "title": "Clues by Sam | 7th May 2026",
+    "videoId": "c7V9JZz8sO4",
+    "subtitle": "Clues by Sam | 7th May 2026",
+    "href": "https://www.youtube.com/watch?v=c7V9JZz8sO4",
+    "levelStart": 240,
+    "levelEnd": 240,
+    "slug": "level-240"
+  },
+  {
+    "level": 239,
+    "title": "Clues by Sam | 6th May 2026",
+    "videoId": "c_7ata_T0Lc",
+    "subtitle": "Clues by Sam | 6th May 2026",
+    "href": "https://www.youtube.com/watch?v=c_7ata_T0Lc",
+    "levelStart": 239,
+    "levelEnd": 239,
+    "slug": "level-239"
+  },
+  {
+    "level": 238,
+    "title": "Clues by Sam | 5th May 2026",
+    "videoId": "doP4bIPi-W4",
+    "subtitle": "Clues by Sam | 5th May 2026",
+    "href": "https://www.youtube.com/watch?v=doP4bIPi-W4",
+    "levelStart": 238,
+    "levelEnd": 238,
+    "slug": "level-238"
+  },
+  {
+    "level": 237,
+    "title": "Clues by Sam | 4th May 2026",
+    "videoId": "2MXkCOlbYCQ",
+    "subtitle": "Clues by Sam | 4th May 2026",
+    "href": "https://www.youtube.com/watch?v=2MXkCOlbYCQ",
+    "levelStart": 237,
+    "levelEnd": 237,
+    "slug": "level-237"
+  },
+  {
+    "level": 236,
+    "title": "Clues by Sam | 3rd May 2026",
+    "videoId": "CRJYecI-XZo",
+    "subtitle": "Clues by Sam | 3rd May 2026",
+    "href": "https://www.youtube.com/watch?v=CRJYecI-XZo",
+    "levelStart": 236,
+    "levelEnd": 236,
+    "slug": "level-236"
+  },
+  {
+    "level": 235,
+    "title": "Clues by Sam | 2nd May 2026",
+    "videoId": "qLPFvT7LBwE",
+    "subtitle": "Clues by Sam | 2nd May 2026",
+    "href": "https://www.youtube.com/watch?v=qLPFvT7LBwE",
+    "levelStart": 235,
+    "levelEnd": 235,
+    "slug": "level-235"
+  },
+  {
+    "level": 234,
+    "title": "Clues by Sam | 1st May 2026",
+    "videoId": "obqW3xLf6BM",
+    "subtitle": "Clues by Sam | 1st May 2026",
+    "href": "https://www.youtube.com/watch?v=obqW3xLf6BM",
+    "levelStart": 234,
+    "levelEnd": 234,
+    "slug": "level-234"
+  },
+  {
+    "level": 233,
+    "title": "Clues by Sam | 30th April 2026",
+    "videoId": "KKbJH_rYW-Y",
+    "subtitle": "Clues by Sam | 30th April 2026",
+    "href": "https://www.youtube.com/watch?v=KKbJH_rYW-Y",
+    "levelStart": 233,
+    "levelEnd": 233,
+    "slug": "level-233"
+  },
+  {
+    "level": 232,
+    "title": "Clues by Sam | 29th April 2026",
+    "videoId": "5qVKx79FobQ",
+    "subtitle": "Clues by Sam | 29th April 2026",
+    "href": "https://www.youtube.com/watch?v=5qVKx79FobQ",
+    "levelStart": 232,
+    "levelEnd": 232,
+    "slug": "level-232"
+  },
+  {
+    "level": 231,
+    "title": "Clues by Sam | 28th April 2026",
+    "videoId": "hKqrddJQXQQ",
+    "subtitle": "Clues by Sam | 28th April 2026",
+    "href": "https://www.youtube.com/watch?v=hKqrddJQXQQ",
+    "levelStart": 231,
+    "levelEnd": 231,
+    "slug": "level-231"
+  },
+  {
+    "level": 230,
+    "title": "Clues by Sam | 27th April 2026",
+    "videoId": "0PJwRGAWaOw",
+    "subtitle": "Clues by Sam | 27th April 2026",
+    "href": "https://www.youtube.com/watch?v=0PJwRGAWaOw",
+    "levelStart": 230,
+    "levelEnd": 230,
+    "slug": "level-230"
+  },
+  {
+    "level": 229,
+    "title": "Clues by Sam | 26th April 2026",
+    "videoId": "JIgOH9CIpH8",
+    "subtitle": "Clues by Sam | 26th April 2026",
+    "href": "https://www.youtube.com/watch?v=JIgOH9CIpH8",
+    "levelStart": 229,
+    "levelEnd": 229,
+    "slug": "level-229"
+  },
+  {
     "level": 228,
     "title": "Clues by Sam | 24th April 2026",
     "videoId": "fb616C23-tQ",
