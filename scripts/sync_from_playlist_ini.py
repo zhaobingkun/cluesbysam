@@ -219,9 +219,9 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
 <body class="level-page">
 <header>
   <div class="container navbar">
-    <a class="brand" href="/index.html"><span>Clues by Sam Guide</span></a>
+    <a class="brand" href="/"><span>Clues by Sam Guide</span></a>
     <nav class="nav-links">
-      <a href="/index.html">Home</a>
+      <a href="/">Home</a>
       <a href="/levels.html">Levels</a>
       <a href="/game.html">Play Online</a>
       <a href="/blog.html">Blog</a>
@@ -307,7 +307,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div><strong>{Clues by Sam Guide}</strong><p class="small">Fan-made logic walkthroughs and video solutions.</p></div>
+      <div><strong>Clues by Sam Guide</strong><p class="small">Fan-made logic walkthroughs and video solutions.</p></div>
       <div><strong>Quick Links</strong><p><a href="/levels.html">All Levels</a><br><a href="/game.html">Play Online</a><br><a href="/blog.html">Blog</a></p></div>
       <div><strong>Legal</strong><p><a href="/privacy.html">Privacy</a><br><a href="/terms-of-service.html">Terms</a></p></div>
     </div>

@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/level/:level/index.html",
+      "destination": "/level/:level/",
+      "permanent": true
+    },
+    {
+      "source": "/level/:level",
+      "destination": "/level/:level/",
+      "permanent": true
+    }
+  ]
+}
