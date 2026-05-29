@@ -143,6 +143,47 @@ def date_to_iso(date_text: str) -> str:
     return datetime(year, month, day).strftime("%Y-%m-%d")
 
 
+def date_to_datetime(date_text: str) -> datetime:
+    day_text, month_name, year_text = date_text.split()
+    day = int(re.sub(r"(st|nd|rd|th)$", "", day_text))
+    month = MONTHS[month_name]
+    year = int(year_text)
+    return datetime(year, month, day)
+
+
+def build_existing_keys(entries: list[dict]) -> tuple[set[str], set[str]]:
+    existing_video_ids: set[str] = set()
+    existing_dates: set[str] = set()
+    for entry in entries:
+        video_id = str(entry.get("videoId", "")).strip()
+        if video_id:
+            existing_video_ids.add(video_id)
+        try:
+            existing_dates.add(extract_date_for_entry(entry))
+        except ValueError:
+            continue
+    return existing_video_ids, existing_dates
+
+
+def merge_entries_by_date(existing: list[dict], new_entries: list[dict]) -> list[dict]:
+    merged = list(existing)
+    ordered_new = sorted(new_entries, key=lambda item: date_to_datetime(extract_date(item["title"])), reverse=True)
+    for new_entry in ordered_new:
+        new_date = date_to_datetime(extract_date(new_entry["title"]))
+        insert_at = len(merged)
+        for idx, entry in enumerate(merged):
+            try:
+                current_date = date_to_datetime(extract_date_for_entry(entry))
+            except ValueError:
+                insert_at = idx
+                break
+            if current_date < new_date:
+                insert_at = idx
+                break
+        merged.insert(insert_at, new_entry)
+    return merged
+
+
 def build_entry(level: int, video_id: str, title: str) -> dict:
     return {
         "level": level,
@@ -500,23 +541,34 @@ def main() -> None:
         raise SystemExit("No playlist items parsed from playlist.ini")
 
     existing = load_playlist_data()
-    latest_existing_video = existing[0]["videoId"]
-    prefix: list[tuple[str, str]] = []
+    existing_video_ids, existing_dates = build_existing_keys(existing)
+    missing_items: list[tuple[str, str, str]] = []
+    seen_video_ids: set[str] = set()
+    seen_dates: set[str] = set()
     for video_id, title in playlist_items:
-        if video_id == latest_existing_video:
-            break
-        prefix.append((video_id, title))
+        if video_id in existing_video_ids or video_id in seen_video_ids:
+            continue
+        try:
+            date_text = extract_date(title)
+        except ValueError:
+            continue
+        if date_text in existing_dates or date_text in seen_dates:
+            continue
+        seen_video_ids.add(video_id)
+        seen_dates.add(date_text)
+        missing_items.append((video_id, title, date_text))
     new_entries: list[dict] = []
     entries = existing
-    if prefix:
+    if missing_items:
         max_existing_level = max(item["level"] for item in existing)
-        for offset, (video_id, title) in enumerate(prefix):
-            level = max_existing_level + len(prefix) - offset
+        ordered_missing = sorted(missing_items, key=lambda item: date_to_datetime(item[2]))
+        for offset, (video_id, title, _date_text) in enumerate(ordered_missing, start=1):
+            level = max_existing_level + offset
             new_entries.append(build_entry(level, video_id, title))
-        entries = new_entries + existing
+        entries = merge_entries_by_date(existing, new_entries)
         write_playlist_data(entries)
 
-    max_level = entries[0]["level"]
+    max_level = max(item["level"] for item in entries)
     if new_entries:
         write_level_pages(sorted(new_entries, key=lambda item: item["level"]), max_level)
     update_html_max_values(max_level)
@@ -525,7 +577,10 @@ def main() -> None:
     refresh_level_page_titles(entries)
     if new_entries:
         update_sitemap(entries, new_entries)
-        print(f"Added levels {min(item['level'] for item in new_entries)}-{max_level}")
+        print(
+            "Added levels "
+            f"{min(item['level'] for item in new_entries)}-{max(item['level'] for item in new_entries)}"
+        )
     else:
         print("No new levels found. Refreshed title text.")
 

@@ -1,5 +1,15 @@
 window.CLUES_PLAYLIST = [
   {
+    "level": 259,
+    "title": "Clues by Sam | 28th May 2026",
+    "videoId": "PmY3nlpu_tg",
+    "subtitle": "Clues by Sam | 28th May 2026",
+    "href": "https://www.youtube.com/watch?v=PmY3nlpu_tg",
+    "levelStart": 259,
+    "levelEnd": 259,
+    "slug": "level-259"
+  },
+  {
     "level": 258,
     "title": "Clues by Sam | 27th May 2026",
     "videoId": "Jqw97vx7WtQ",
@@ -1068,6 +1078,26 @@ window.CLUES_PLAYLIST = [
     "slug": "level-152",
     "videoId": "seaXUYFsyX4",
     "level": 152
+  },
+  {
+    "level": 261,
+    "title": "Clues by Sam | 8th January 2026",
+    "videoId": "WTHFMKhEVbA",
+    "subtitle": "Clues by Sam | 8th January 2026",
+    "href": "https://www.youtube.com/watch?v=WTHFMKhEVbA",
+    "levelStart": 261,
+    "levelEnd": 261,
+    "slug": "level-261"
+  },
+  {
+    "level": 260,
+    "title": "Clues by Sam | 8th November 2025",
+    "videoId": "7Ea0d6kjpI4",
+    "subtitle": "Clues by Sam | 8th November 2025",
+    "href": "https://www.youtube.com/watch?v=7Ea0d6kjpI4",
+    "levelStart": 260,
+    "levelEnd": 260,
+    "slug": "level-260"
   },
   {
     "title": "Double Monday | Clues by Sam",
