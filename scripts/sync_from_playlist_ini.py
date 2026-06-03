@@ -388,9 +388,9 @@ def render_level_page(
     <p class="small">Not affiliated with the official game. Copyright <span data-year></span> CluesBySam.net</p>
   </div>
 </footer>
-<script src="/assets/js/playlist-data.js" defer></script>
-<script src="/assets/js/levels.js" defer></script>
-<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/playlist-data.js?v=dates-20260603" defer></script>
+<script src="/assets/js/levels.js?v=dates-20260603" defer></script>
+<script src="/assets/js/site.js?v=dates-20260603" defer></script>
 </body>
 </html>
 """
