@@ -157,8 +157,8 @@ button, .btn {
 .share-whatsapp { background: #25d366; }
 .share-copy { background: #3b4454; }
 .share-btn:focus-visible, .share-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-.related-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0.4rem; }
-.related-grid a { display: grid; place-items: center; padding: 0.5rem; border-radius: 10px; border: 1px solid #cbe7e2; background: #f3fbfa; font-weight: 700; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 0.4rem; }
+.related-grid a { display: grid; place-items: center; min-height: 2.8rem; padding: 0.5rem 0.65rem; border-radius: 10px; border: 1px solid #cbe7e2; background: #f3fbfa; font-weight: 700; font-size: 0.92rem; text-align: center; }
 .split { display: grid; grid-template-columns: minmax(0, 1.3fr) 360px; gap: 1rem; align-items: flex-start; }
 .split > div:first-child { display: flex; flex-direction: column; gap: 0.8rem; }
 .split > div:first-child .video-frame { order: 1; }

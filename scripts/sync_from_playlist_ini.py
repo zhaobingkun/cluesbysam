@@ -57,15 +57,15 @@ NOTE_LINES = [
 ]
 
 INTRO_LINES = [
-    "Need the Clues by Sam answer for level {level}? This page covers the {date} board with a direct walkthrough and quick archive links for nearby puzzles.",
-    "Use this Clues by Sam answer page for level {level}. The video walkthrough below covers the {date} puzzle and links back to the full archive.",
-    "This Clues by Sam level {level} guide collects the {date} answer, the video walkthrough, and nearby levels so you can keep moving through the archive.",
+    "Need the Clues by Sam answer for {date}? This page covers the daily board with a direct walkthrough and quick archive links for nearby puzzles.",
+    "Use this Clues by Sam answer page for {date}. The video walkthrough below covers the daily puzzle and links back to the full archive.",
+    "This Clues by Sam guide collects the {date} answer, the video walkthrough, and nearby dates so you can keep moving through the archive.",
 ]
 
 BRIEF_LINES = [
-    "Stuck on this Clues by Sam level? Use the first two confirmed innocents to narrow the criminal chain, then compare every touching square before committing a guess.",
-    "Stuck on this Clues by Sam level? Start by marking any clue that forces a row or column split, then verify all diagonal neighbors before locking criminals.",
-    "Stuck on this Clues by Sam level? Clear the most restricted clue zone first, then use the newly safe tiles to unlock the next deduction.",
+    "Stuck on this Clues by Sam puzzle? Use the first two confirmed innocents to narrow the criminal chain, then compare every touching square before committing a guess.",
+    "Stuck on this Clues by Sam puzzle? Start by marking any clue that forces a row or column split, then verify all diagonal neighbors before locking criminals.",
+    "Stuck on this Clues by Sam puzzle? Clear the most restricted clue zone first, then use the newly safe tiles to unlock the next deduction.",
 ]
 
 
@@ -205,8 +205,8 @@ def format_title(date_text: str, *, html: bool) -> str:
 def build_card(level: int, video_id: str, date_text: str, image_kind: str) -> str:
     return (
         '      <div class="level-card">\n'
-        f'        <span class="badge">Level {level}</span>\n'
-        f'        <img class="card-thumb" src="https://img.youtube.com/vi/{video_id}/{image_kind}.jpg" alt="Clues by Sam Level {level} answer thumbnail" loading="lazy" width="320" height="180">\n'
+        f'        <span class="badge">{date_text}</span>\n'
+        f'        <img class="card-thumb" src="https://img.youtube.com/vi/{video_id}/{image_kind}.jpg" alt="Clues by Sam {date_text} answer thumbnail" loading="lazy" width="320" height="180">\n'
         f'        <h3>{format_title(date_text, html=True)}</h3>\n'
         f'        <p class="small">{date_text}</p>\n'
         f'        <a class="btn btn-secondary" href="/level/{level}/">Open guide</a>\n'
@@ -225,19 +225,52 @@ def replace_cards_block(text: str, data_attr: str, replacement: str) -> str:
     return updated
 
 
-def render_related_links(level: int, max_level: int) -> str:
-    start = max(1, level - 6)
-    end = min(max_level, level + 1)
-    return "".join(f'<a href="/level/{num}/">{num}</a>' for num in range(start, end + 1))
+def build_entry_by_level(entries: list[dict]) -> dict[int, dict]:
+    return {int(entry["level"]): entry for entry in entries if "level" in entry}
 
 
-def render_level_page(level: int, video_id: str, date_text: str, max_level: int) -> str:
+def build_dated_entries(entries: list[dict]) -> list[dict]:
+    dated_entries = []
+    for entry in entries:
+        try:
+            date_text = extract_date_for_entry(entry)
+            date_value = date_to_datetime(date_text)
+        except (KeyError, ValueError):
+            continue
+        dated_entries.append(entry | {"dateText": date_text, "dateValue": date_value})
+    return sorted(dated_entries, key=lambda item: item["dateValue"])
+
+
+def render_related_links(level: int, dated_entries: list[dict]) -> str:
+    current_index = next(
+        (idx for idx, entry in enumerate(dated_entries) if int(entry["level"]) == int(level)),
+        None,
+    )
+    if current_index is None:
+        return ""
+    start = max(0, current_index - 6)
+    end = min(len(dated_entries), current_index + 2)
+    links = []
+    for entry in dated_entries[start:end]:
+        num = int(entry["level"])
+        label = entry["dateText"]
+        links.append(f'<a href="/level/{num}/">{label}</a>')
+    return "".join(links)
+
+
+def render_level_page(
+    level: int,
+    video_id: str,
+    date_text: str,
+    max_level: int,
+    dated_entries: list[dict],
+) -> str:
     intro = INTRO_LINES[level % len(INTRO_LINES)].format(level=level, date=date_text)
     brief = BRIEF_LINES[level % len(BRIEF_LINES)]
     focus = FOCUS_LINES[level % len(FOCUS_LINES)]
     mistake = MISTAKE_LINES[level % len(MISTAKE_LINES)]
     notes = NOTE_LINES[level % len(NOTE_LINES)]
-    related = render_related_links(level, max_level)
+    related = render_related_links(level, dated_entries)
     title_html = format_title(date_text, html=True)
     title_attr = format_title(date_text, html=False)
     return f"""<!DOCTYPE html>
@@ -250,7 +283,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
   <link rel="preconnect" href="https://i.ytimg.com">
   <link rel="preconnect" href="https://www.youtube-nocookie.com">
   <title>{title_html}</title>
-  <meta name="description" content="Find the Clues by Sam level {level} answer for the {date_text} puzzle, including the video walkthrough, archive links, and quick solve notes.">
+  <meta name="description" content="Find the Clues by Sam answer for the {date_text} puzzle, including the video walkthrough, archive links, and quick solve notes.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://cluesbysam.net/level/{level}/">
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -269,7 +302,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
       <a href="/contact.html">Contact</a>
     </nav>
     <div class="nav-actions">
-      <input type="number" min="1" max="{max_level}" placeholder="Jump to level" data-nav-jump-input>
+      <input type="number" min="1" max="{max_level}" placeholder="Jump to archive" data-nav-jump-input>
       <button data-nav-jump-btn>Go</button>
       <button data-nav-toggle style="background:#fff;color:var(--ink);border:1px solid #cbe7e2;">Menu</button>
     </div>
@@ -279,12 +312,12 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
 <main>
   <section class="hero">
     <div class="container">
-      <span class="badge">Level {level}</span>
+      <span class="badge">{date_text}</span>
       <h1>{title_html}</h1>
       <p>{intro}</p>
       <p class="small level-brief">{brief}</p>
       <div class="nav-actions">
-        <input type="number" min="1" max="{max_level}" placeholder="Jump to level" data-nav-jump-input>
+        <input type="number" min="1" max="{max_level}" placeholder="Jump to archive" data-nav-jump-input>
         <button data-nav-jump-btn>Go</button>
       </div>
     </div>
@@ -292,10 +325,10 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
   <section class="section">
     <div class="container split">
       <div>
-        <div class="level-photo"><img src="https://img.youtube.com/vi/{video_id}/hqdefault.jpg" alt="Clues by Sam level {level} answer preview"></div>
+        <div class="level-photo"><img src="https://img.youtube.com/vi/{video_id}/hqdefault.jpg" alt="Clues by Sam {date_text} answer preview"></div>
         <div class="video-frame" data-video-id="{video_id}" data-title="{title_attr}"></div>
         <div class="share-box">
-          <h3>Share This Level Guide</h3>
+          <h3>Share This Daily Guide</h3>
           <p>Help other players by sharing this walkthrough guide.</p>
           <div class="share-actions">
             <button type="button" class="share-btn share-facebook" data-share="facebook">Facebook</button>
@@ -309,7 +342,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
       </div>
       <div>
         <div class="related-levels">
-          <h3>Nearby levels</h3>
+          <h3>Nearby dates</h3>
           <div class="related-grid">
           {related}
           </div>
@@ -322,7 +355,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
           <span class="badge">Common mistake</span>
           <p class="small solve-mistake">{mistake}</p>
           <span class="badge">Quick plan</span>
-          <p>Need the Clues by Sam answer for level {level}? Use the {date_text} video walkthrough below, then check nearby levels if you are catching up on the archive.</p>
+          <p>Need the Clues by Sam answer for {date_text}? Use the video walkthrough below, then check nearby dates if you are catching up on the archive.</p>
           <ul>
             <li>Every clue is honest; chain deductions safely.</li>
             <li>Neighbors include diagonals; count up to eight.</li>
@@ -341,7 +374,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
   </section>
   <div class="notice-box">
     <h3>Version Differences 更新提示</h3>
-    <p>Clues by Sam levels get tuned occasionally, so layouts or solutions may change between app updates. If this guide doesn't match perfectly, use the screenshot and video above to adjust.</p>
+    <p>Clues by Sam daily puzzles get tuned occasionally, so layouts or solutions may change between app updates. If this guide doesn't match perfectly, use the screenshot and video above to adjust.</p>
     <p>Clues by Sam 关卡有时会调整，不同版本可能导致布局或解法略有差异。如发现与当前关卡不完全一致，请参考上方图片与视频自行微调。</p>
   </div>
 </main>
@@ -349,7 +382,7 @@ def render_level_page(level: int, video_id: str, date_text: str, max_level: int)
   <div class="container">
     <div class="footer-grid">
       <div><strong>Clues by Sam Guide</strong><p class="small">Fan-made logic walkthroughs and video solutions.</p></div>
-      <div><strong>Quick Links</strong><p><a href="/levels.html">All Levels</a><br><a href="/game.html">Play Online</a><br><a href="/blog.html">Blog</a></p></div>
+      <div><strong>Quick Links</strong><p><a href="/levels.html">All Dates</a><br><a href="/game.html">Play Online</a><br><a href="/blog.html">Blog</a></p></div>
       <div><strong>Legal</strong><p><a href="/privacy.html">Privacy</a><br><a href="/terms-of-service.html">Terms</a></p></div>
     </div>
     <p class="small">Not affiliated with the official game. Copyright <span data-year></span> CluesBySam.net</p>
@@ -371,7 +404,7 @@ def update_index_html(entries: list[dict], max_level: int) -> None:
     latest_title_attr = format_title(latest_date, html=False)
     text = re.sub(r'max="\d+"', f'max="{max_level}"', text)
     text = re.sub(r"1-\d+", f"1-{max_level}", text)
-    text = re.sub(r"📅 \d+\+ Daily Levels", f"📅 {max_level}+ Daily Levels", text)
+    text = re.sub(r"📅 \d+\+ Daily (?:Levels|Guides)", f"📅 {max_level}+ Daily Guides", text)
     text = re.sub(
         r"<h2 style=\"margin:0 0 0.5rem;\">.*?</h2>",
         f"<h2 style=\"margin:0 0 0.5rem;\">{latest_title_html}</h2>",
@@ -387,7 +420,7 @@ def update_index_html(entries: list[dict], max_level: int) -> None:
     )
     text = re.sub(
         r'<img src="https://i\.ytimg\.com/vi_webp/[^/]+/hqdefault\.webp" alt="Clues by Sam Level \d+ answer thumbnail"',
-        f'<img src="https://i.ytimg.com/vi_webp/{latest["videoId"]}/hqdefault.webp" alt="Clues by Sam Level {latest["level"]} answer thumbnail"',
+        f'<img src="https://i.ytimg.com/vi_webp/{latest["videoId"]}/hqdefault.webp" alt="Clues by Sam {latest_date} answer thumbnail"',
         text,
         count=1,
     )
@@ -430,14 +463,13 @@ def update_levels_html(entries: list[dict], max_level: int) -> None:
         seen_months[key].append(entry["level"])
 
     jumps = [
-        f'<a class="archive-jump" href="/level/{max_level}/"><strong>Latest 30</strong><span>Levels {max(1, max_level - 29)}-{max_level} with the newest answers and walkthroughs.</span></a>'
+        f'<a class="archive-jump" href="/level/{max_level}/"><strong>Latest answers</strong><span>The newest date-based Clues by Sam answers and walkthroughs.</span></a>'
     ]
     recent_groups = month_groups[:5]
     for label, levels in recent_groups:
         month_max = max(levels)
-        month_min = min(levels)
         jumps.append(
-            f'<a class="archive-jump" href="/level/{month_max}/"><strong>{label}</strong><span>Levels {month_min}-{month_max} covering the {label} puzzle run.</span></a>'
+            f'<a class="archive-jump" href="/level/{month_max}/"><strong>{label}</strong><span>Daily answer guides from the {label} puzzle run.</span></a>'
         )
     older_2025 = []
     for entry in entries:
@@ -449,7 +481,7 @@ def update_levels_html(entries: list[dict], max_level: int) -> None:
             older_2025.append(entry["level"])
     if older_2025:
         jumps.append(
-            f'<a class="archive-jump" href="/level/{max(older_2025)}/"><strong>2025 Archive</strong><span>Levels {min(older_2025)}-{max(older_2025)} from September to December 2025.</span></a>'
+            f'<a class="archive-jump" href="/level/{max(older_2025)}/"><strong>2025 Archive</strong><span>Date-based answer guides from September to December 2025.</span></a>'
         )
     archive_jump_html = "\n        ".join(jumps)
     archive_pattern = re.compile(r'(<div class="archive-jumps">\n)(.*?)(\n\s*</div>)', re.S)
@@ -466,25 +498,19 @@ def update_levels_html(entries: list[dict], max_level: int) -> None:
     LEVELS_HTML.write_text(text)
 
 
-def refresh_level_page_titles(entries: list[dict]) -> None:
+def refresh_level_pages(entries: list[dict], max_level: int) -> None:
+    dated_entries = build_dated_entries(entries)
     for entry in entries:
         level = entry["level"]
         date_text = extract_date_for_entry(entry)
-        title_html = format_title(date_text, html=True)
-        title_attr = format_title(date_text, html=False)
+        try:
+            date_to_datetime(date_text)
+        except (KeyError, ValueError):
+            continue
         page = ROOT / "level" / str(level) / "index.html"
         if not page.exists():
             continue
-        text = page.read_text()
-        text = re.sub(r"<title>.*?</title>", f"<title>{title_html}</title>", text, count=1, flags=re.S)
-        text = re.sub(r"<h1>.*?</h1>", f"<h1>{title_html}</h1>", text, count=1, flags=re.S)
-        text = re.sub(
-            r'(<div class="video-frame"[^>]*data-video-id="[^"]+"\s+data-title=")[^"]+("></div>)',
-            rf"\1{title_attr}\2",
-            text,
-            count=1,
-        )
-        page.write_text(text)
+        page.write_text(render_level_page(level, entry["videoId"], date_text, max_level, dated_entries))
 
 
 def update_sitemap(entries: list[dict], new_entries: list[dict]) -> None:
@@ -526,11 +552,11 @@ def update_html_max_values(max_level: int) -> None:
                 path.write_text(updated)
 
 
-def write_level_pages(new_entries: list[dict], max_level: int) -> None:
+def write_level_pages(new_entries: list[dict], max_level: int, dated_entries: list[dict]) -> None:
     for entry in new_entries:
         level_dir = ROOT / "level" / str(entry["level"])
         level_dir.mkdir(parents=True, exist_ok=True)
-        page = render_level_page(entry["level"], entry["videoId"], extract_date(entry["title"]), max_level)
+        page = render_level_page(entry["level"], entry["videoId"], extract_date(entry["title"]), max_level, dated_entries)
         (level_dir / "index.html").write_text(page)
 
 
@@ -569,12 +595,13 @@ def main() -> None:
         write_playlist_data(entries)
 
     max_level = max(item["level"] for item in entries)
+    dated_entries = build_dated_entries(entries)
     if new_entries:
-        write_level_pages(sorted(new_entries, key=lambda item: item["level"]), max_level)
+        write_level_pages(sorted(new_entries, key=lambda item: item["level"]), max_level, dated_entries)
     update_html_max_values(max_level)
     update_index_html(entries, max_level)
     update_levels_html(entries, max_level)
-    refresh_level_page_titles(entries)
+    refresh_level_pages(entries, max_level)
     if new_entries:
         update_sitemap(entries, new_entries)
         print(

@@ -11,6 +11,18 @@
   }
   const playlist = window.CLUES_PLAYLIST || [];
   const maxLevel = playlist.reduce((m,e)=> Math.max(m, e.levelEnd||0), 0) || 135;
+  function extractGuideDate(entry) {
+    const raw = (entry && (entry.subtitle || entry.title)) || '';
+    const match = raw.match(/(\d{1,2}(?:st|nd|rd|th) [A-Za-z]+ \d{4})/);
+    if (match) return match[1];
+    if (raw.includes('|')) return raw.split('|').slice(-1)[0].trim();
+    return raw;
+  }
+  function parseGuideDate(entry) {
+    const value = extractGuideDate(entry).replace(/(\d{1,2})(st|nd|rd|th)/, '$1');
+    const time = Date.parse(value);
+    return Number.isNaN(time) ? null : time;
+  }
   function syncMaxInputs() {
     const inputs = document.querySelectorAll('[data-nav-jump-input], [data-level-search-input]');
     inputs.forEach((input) => {
@@ -264,7 +276,15 @@
       for(let i=item.levelStart; i<=item.levelEnd; i++){ entries.push([i, item]); }
       return entries;
     }));
-    const maxLevel = Math.max(...playlist.map(item => item.levelEnd));
+    const datedEntries = playlist
+      .map((item) => ({ item, dateValue: parseGuideDate(item) }))
+      .filter((row) => row.dateValue !== null)
+      .sort((a, b) => a.dateValue - b.dateValue);
+    const currentIndex = datedEntries.findIndex((row) => {
+      const item = row.item;
+      return currentLevel >= item.levelStart && currentLevel <= item.levelEnd;
+    });
+    if (currentIndex < 0) return;
 
     const thumbUrl = (levelNum) => {
       const data = levelMap.get(levelNum);
@@ -277,7 +297,8 @@
       el.className = `nav-card ${type}`;
       if (href) el.href = href;
       const img = document.createElement('img');
-      img.alt = `Clues by Sam Level ${levelNum} thumbnail`;
+      const data = levelMap.get(levelNum);
+      img.alt = `Clues by Sam ${data ? extractGuideDate(data) : 'daily'} thumbnail`;
       img.loading = 'lazy';
       const urls = thumbUrl(levelNum);
       img.src = urls.fallback;
@@ -290,24 +311,25 @@
       return el;
     };
 
-    const prevLevel = currentLevel > 1 ? currentLevel - 1 : null;
-    const nextLevel = currentLevel < maxLevel ? currentLevel + 1 : null;
+    const prevEntry = currentIndex > 0 ? datedEntries[currentIndex - 1].item : null;
+    const nextEntry = currentIndex < datedEntries.length - 1 ? datedEntries[currentIndex + 1].item : null;
 
     const grid = document.createElement('div');
     grid.className = 'level-nav-grid';
     const header = document.createElement('div');
     header.className = 'level-nav-header';
     const title = document.createElement('h3');
-    title.textContent = 'Related Levels';
+    title.textContent = 'Related dates';
     const allLink = document.createElement('a');
     allLink.href = '/levels.html';
     allLink.className = 'level-nav-all';
-    allLink.textContent = 'All Levels →';
+    allLink.textContent = 'All dates →';
     header.appendChild(title);
     header.appendChild(allLink);
 
-    if (prevLevel) {
-      grid.appendChild(createCard('prev', prevLevel, `← Level ${prevLevel}`, `/level/${prevLevel}/`));
+    if (prevEntry) {
+      const prevLevel = prevEntry.levelStart;
+      grid.appendChild(createCard('prev', prevLevel, `← ${extractGuideDate(prevEntry)}`, `/level/${prevLevel}/`));
     } else {
       const placeholder = document.createElement('div');
       placeholder.className = 'nav-card disabled';
@@ -315,8 +337,9 @@
       grid.appendChild(placeholder);
     }
 
-    if (nextLevel) {
-      grid.appendChild(createCard('next', nextLevel, `Level ${nextLevel} →`, `/level/${nextLevel}/`));
+    if (nextEntry) {
+      const nextLevel = nextEntry.levelStart;
+      grid.appendChild(createCard('next', nextLevel, `${extractGuideDate(nextEntry)} →`, `/level/${nextLevel}/`));
     } else {
       const placeholder = document.createElement('div');
       placeholder.className = 'nav-card disabled';

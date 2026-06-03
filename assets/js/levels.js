@@ -61,7 +61,7 @@
       img.onerror = ()=>{ img.src = PLACEHOLDER_IMG; };
       const badge = document.createElement('span');
       badge.className = 'badge';
-      badge.textContent = `Level ${entry.levelStart}`;
+      badge.textContent = extractDate(entry);
       const title = document.createElement('h3');
       title.textContent = displayTitle(entry);
       const meta = document.createElement('p');
@@ -105,7 +105,7 @@
       ranges.forEach((r,idx)=>{
         const b=document.createElement('button');
         b.className='chip' + (idx===0 ? ' active' : '');
-        b.textContent=`Level ${r.start}-${r.end}`;
+        b.textContent=`Archive ${r.start}-${r.end}`;
         b.addEventListener('click', ()=>{
           filters.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
           b.classList.add('active');
@@ -130,7 +130,7 @@
         const n = Number(input.value);
         const entry = findEntry(n);
         if(!Number.isFinite(n) || n<1 || !entry || n>maxLevel){
-          showInlineError(scope, 'Level not found.');
+          showInlineError(scope, 'Guide not found.');
           return;
         }
         showInlineError(scope, '');
@@ -178,7 +178,7 @@
     }
     function render(list){ grid.innerHTML=''; list.forEach(e=> grid.appendChild(card(e))); if(count) count.textContent=`${list.length} guides`; }
     filters.innerHTML='';
-    const allBtn=document.createElement('button'); allBtn.className='chip active'; allBtn.textContent='All 1-'+maxLevel; filters.appendChild(allBtn);
+    const allBtn=document.createElement('button'); allBtn.className='chip active'; allBtn.textContent='All dates'; filters.appendChild(allBtn);
     allBtn.addEventListener('click',()=>{ filters.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); allBtn.classList.add('active'); render(data); });
     ranges.forEach(r=>{ const b=document.createElement('button'); b.className='chip'; b.textContent=`${r.start}-${r.end}`; b.addEventListener('click',()=>{ filters.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); b.classList.add('active'); const list=data.filter(e=>e.levelStart>=r.start && e.levelEnd<=r.end); render(list); }); filters.appendChild(b); });
     render(data.slice().sort((a,b)=> (b.levelStart||0) - (a.levelStart||0)));
@@ -192,7 +192,7 @@
       const n=Number(input.value);
       const entry=findEntry(n);
       if(entry && n<=maxLevel){ if(err) err.style.display='none'; window.location.href=buildHref(n); return; }
-      if(err){ err.textContent='Level not found.'; err.style.display='block'; }
+      if(err){ err.textContent='Guide not found.'; err.style.display='block'; }
     }
     btn.addEventListener('click', go);
     input.addEventListener('keypress',(e)=>{ if(e.key==='Enter') go(); });
