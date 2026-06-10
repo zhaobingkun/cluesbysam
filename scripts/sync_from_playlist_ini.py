@@ -289,6 +289,8 @@ def render_level_page(
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="icon" href="/assets/images/favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428701926694635"
+     crossorigin="anonymous"></script>
 </head>
 <body class="level-page">
 <header>
