@@ -8,3 +8,8 @@
 - `https://cluesbysam.com/` currently returns `Content-Security-Policy: frame-ancestors 'none'` and `X-Frame-Options: DENY`.
 - Because browsers enforce those headers, `cluesbysam.net` cannot embed the official game in an iframe while those headers remain.
 - The homepage and `/game.html` should use a direct external link to the official game instead of an embedded iframe.
+
+## 2026-06-29 Homepage Repositioning
+- After iframe embedding stopped working, the homepage should lead with `today's answer + video walkthrough + full archive`.
+- Treat the official game link as a supporting external action, not the main product surface.
+- Keep the homepage SEO focused on `Clues by Sam answer`, `walkthrough`, `daily guide`, and `archive`.
