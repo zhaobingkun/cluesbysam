@@ -289,8 +289,36 @@ def render_level_page(
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="icon" href="/assets/images/favicon.ico">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428701926694635"
-     crossorigin="anonymous"></script>
+  <script>
+    window.addEventListener('load', function () {{
+      var userAgent = navigator.userAgent || '';
+      var isAndroidWebView = /Android/i.test(userAgent) &&
+        (userAgent.indexOf('; wv)') !== -1 ||
+         userAgent.indexOf(' wv)') !== -1 ||
+         (userAgent.indexOf('Version/4.0') !== -1 && userAgent.indexOf('Chrome/') !== -1));
+      var adsDisabled = document.body && document.body.dataset.adsense === 'off';
+      if (isAndroidWebView || adsDisabled) return;
+
+      var loaded = false;
+      function loadAds() {{
+        if (loaded) return;
+        loaded = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428701926694635';
+        document.head.appendChild(script);
+      }}
+
+      var timer = window.setTimeout(loadAds, 8000);
+      ['scroll', 'pointerdown', 'keydown'].forEach(function (eventName) {{
+        window.addEventListener(eventName, function () {{
+          window.clearTimeout(timer);
+          loadAds();
+        }}, {{ once: true, passive: true }});
+      }});
+    }});
+  </script>
 </head>
 <body class="level-page">
 <header>

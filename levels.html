@@ -15,8 +15,36 @@
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428701926694635"
-     crossorigin="anonymous"></script>
+  <script>
+    window.addEventListener('load', function () {
+      var userAgent = navigator.userAgent || '';
+      var isAndroidWebView = /Android/i.test(userAgent) &&
+        (userAgent.indexOf('; wv)') !== -1 ||
+         userAgent.indexOf(' wv)') !== -1 ||
+         (userAgent.indexOf('Version/4.0') !== -1 && userAgent.indexOf('Chrome/') !== -1));
+      var adsDisabled = document.body && document.body.dataset.adsense === 'off';
+      if (isAndroidWebView || adsDisabled) return;
+
+      var loaded = false;
+      function loadAds() {
+        if (loaded) return;
+        loaded = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6428701926694635';
+        document.head.appendChild(script);
+      }
+
+      var timer = window.setTimeout(loadAds, 8000);
+      ['scroll', 'pointerdown', 'keydown'].forEach(function (eventName) {
+        window.addEventListener(eventName, function () {
+          window.clearTimeout(timer);
+          loadAds();
+        }, { once: true, passive: true });
+      });
+    });
+  </script>
 </head>
 <body>
 <header>
@@ -30,7 +58,7 @@
       <a href="/contact.html">Contact</a>
     </nav>
     <div class="nav-actions">
-      <input type="number" min="1" max="313" placeholder="Jump to archive" data-nav-jump-input>
+      <input type="number" min="1" max="314" placeholder="Jump to archive" data-nav-jump-input>
       <button data-nav-jump-btn>Go</button>
       <button data-nav-toggle style="background:#fff;color:var(--ink);border:1px solid #cbe7e2;">Menu</button>
     </div>
@@ -42,15 +70,15 @@
       <h1>Clues by Sam Archive</h1>
       <p>Search or filter the full Clues by Sam archive. This page works as an all answers and walkthrough index, so you can jump straight to any daily puzzle.</p>
       <div class="hero-search">
-        <input type="number" min="1" max="313" placeholder="Enter archive number (1-313)" data-level-search-input>
+        <input type="number" min="1" max="314" placeholder="Enter archive number (1-314)" data-level-search-input>
         <button data-level-search-btn>Go to guide</button>
       </div>
       <p class="search-error" data-level-search-error>Guide not found.</p>
       <p class="archive-intro">This archive collects every Clues by Sam answer page in one place, from the newest daily puzzle back to the earliest dates. Use the range filters, search box, and direct archive links below to open the exact walkthrough you need, compare nearby puzzles, and catch up on missed days without scrolling through unrelated results.</p>
       <p class="archive-intro small">If you are searching for Clues by Sam all answers, full walkthroughs, or older daily solutions, this page is the fastest route into the full archive.</p>
       <div class="archive-jumps">
-        <a class="archive-jump" href="/level/313/"><strong>Latest answers</strong><span>The newest date-based Clues by Sam answers and walkthroughs.</span></a>
-        <a class="archive-jump" href="/level/313/"><strong>July 2026</strong><span>Daily answer guides from the July 2026 puzzle run.</span></a>
+        <a class="archive-jump" href="/level/314/"><strong>Latest answers</strong><span>The newest date-based Clues by Sam answers and walkthroughs.</span></a>
+        <a class="archive-jump" href="/level/314/"><strong>July 2026</strong><span>Daily answer guides from the July 2026 puzzle run.</span></a>
         <a class="archive-jump" href="/level/290/"><strong>June 2026</strong><span>Daily answer guides from the June 2026 puzzle run.</span></a>
         <a class="archive-jump" href="/level/264/"><strong>May 2026</strong><span>Daily answer guides from the May 2026 puzzle run.</span></a>
         <a class="archive-jump" href="/level/233/"><strong>April 2026</strong><span>Daily answer guides from the April 2026 puzzle run.</span></a>
@@ -64,6 +92,13 @@
       <div class="chips" data-range-filters></div>
       <p class="small" data-level-count></p>
       <div class="cards" data-level-grid>
+      <div class="level-card">
+        <span class="badge">25th July 2026</span>
+        <img class="card-thumb" src="https://img.youtube.com/vi/OPt3ppQtLZI/hqdefault.jpg" alt="Clues by Sam 25th July 2026 answer thumbnail" loading="lazy" width="320" height="180">
+        <h3>Clues by Sam Answer &amp; Walkthrough | 25th July 2026</h3>
+        <p class="small">25th July 2026</p>
+        <a class="btn btn-secondary" href="/level/314/">Open guide</a>
+      </div>
       <div class="level-card">
         <span class="badge">24th July 2026</span>
         <img class="card-thumb" src="https://img.youtube.com/vi/dfT76S_BRss/hqdefault.jpg" alt="Clues by Sam 24th July 2026 answer thumbnail" loading="lazy" width="320" height="180">
@@ -267,13 +302,7 @@
         <p class="small">25th June 2026</p>
         <a class="btn btn-secondary" href="/level/285/">Open guide</a>
       </div>
-      <div class="level-card">
-        <span class="badge">24th June 2026</span>
-        <img class="card-thumb" src="https://img.youtube.com/vi/Fk62h7_eNOw/hqdefault.jpg" alt="Clues by Sam 24th June 2026 answer thumbnail" loading="lazy" width="320" height="180">
-        <h3>Clues by Sam Answer &amp; Walkthrough | 24th June 2026</h3>
-        <p class="small">24th June 2026</p>
-        <a class="btn btn-secondary" href="/level/284/">Open guide</a>
-      </div>
+
 
 
 
