@@ -28,3 +28,4 @@
 - That wrapper now delegates to `scripts/run_daily_and_publish.sh`, which runs the fetcher, refuses to overwrite a dirty site repo, commits generated site changes, and pushes `origin/main` so Vercel can deploy.
 - YouTube titles may use abbreviated English months such as `1 Aug 2026`; both the fetcher and site generator accept full and abbreviated month names.
 - If a push fails after a local commit, the next run can retry the push because the site repo remains clean and the commit is still ahead of `origin/main`.
+- The first real replay added level 320 for `1st Aug 2026`; the generated commit pushed successfully and `https://cluesbysam.net/level/320/` returned HTTP 200.

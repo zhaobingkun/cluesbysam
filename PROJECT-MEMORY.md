@@ -7,10 +7,10 @@
 - Site type: static SEO walkthrough site for the daily logic puzzle game **Clues by Sam**
 
 ## Current Content State
-- Current level count: `256`
-- Current max level: `256`
-- Current `index.html` count: `257`
-  - `256` level pages under `level/<n>/index.html`
+- Current level count: `320`
+- Current max level: `320`
+- Current `index.html` count: `321`
+  - `320` level pages under `level/<n>/index.html`
   - `1` root homepage `index.html`
 - Top-level static pages include:
   - `index.html`
@@ -74,8 +74,8 @@
   5. Update `sitemap.xml`
 
 ## Recent Known State
-- Latest imported range: `229-256`
-- Homepage latest answer currently reflects late May 2026 content
+- Latest imported range: `320` (`1st Aug 2026`)
+- Homepage latest answer currently reflects the 1st August 2026 content
 - Canonical URLs and contact info already point to `cluesbysam.net`
 
 ## Known Cleanup / Technical Debt
@@ -98,6 +98,7 @@
 
 ## Suggested Next Work
 - Keep adding new daily pages when new walkthrough links appear
+- The daily launchd runner now commits and pushes generated site changes automatically
 - Continue using date-first titles
 - If future playlist exports add more irregular/non-date videos, keep them out of homepage/month archive grouping logic
 - If improving SEO further:
@@ -112,4 +113,4 @@
   3. `index.html`
   4. `levels.html`
   5. `sitemap.xml`
-  6. whether the current max level has moved beyond `256`
+  6. whether the current max level has moved beyond `320`
