@@ -13,11 +13,11 @@ timestamp() {
 }
 
 fail_if_site_repo_dirty() {
-  local status
-  status="$(git -C "$SITE_REPO" status --porcelain --untracked-files=all)"
-  if [[ -n "$status" ]]; then
+  local repo_status
+  repo_status="$(git -C "$SITE_REPO" status --porcelain --untracked-files=all)"
+  if [[ -n "$repo_status" ]]; then
     printf '[%s] Site repo has uncommitted changes; refusing to overwrite or auto-commit them:\n%s\n' \
-      "$(timestamp)" "$status" >&2
+      "$(timestamp)" "$repo_status" >&2
     exit 1
   fi
 }
