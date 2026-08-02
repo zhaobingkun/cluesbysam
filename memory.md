@@ -22,3 +22,9 @@
 - Android WebView traffic does not load AdSense, while normal analytics remain unaffected.
 - `404.html`, `contact.html`, `privacy.html`, `terms-of-service.html`, and `game.html` carry `data-adsense="off"` and do not load ads.
 - Keep the generator template in `scripts/sync_from_playlist_ini.py` aligned so regenerated level pages retain the same loader.
+
+## 2026-08-02 Daily sync publishing
+- The macOS launchd entry still runs `/Users/zhaobingkun/dev/Python/spider/run_cluesbysam_daily.sh` every day at 10:45.
+- That wrapper now delegates to `scripts/run_daily_and_publish.sh`, which runs the fetcher, refuses to overwrite a dirty site repo, commits generated site changes, and pushes `origin/main` so Vercel can deploy.
+- YouTube titles may use abbreviated English months such as `1 Aug 2026`; both the fetcher and site generator accept full and abbreviated month names.
+- If a push fails after a local commit, the next run can retry the push because the site repo remains clean and the commit is still ahead of `origin/main`.
