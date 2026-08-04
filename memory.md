@@ -29,3 +29,7 @@
 - YouTube titles may use abbreviated English months such as `1 Aug 2026`; both the fetcher and site generator accept full and abbreviated month names.
 - If a push fails after a local commit, the next run can retry the push because the site repo remains clean and the commit is still ahead of `origin/main`.
 - The first real replay added level 320 for `1st Aug 2026`; the generated commit pushed successfully and `https://cluesbysam.net/level/320/` returned HTTP 200.
+
+## 2026-08-04 Codex daily task
+- Codex automation `clues-by-sam` runs daily at 11:15 as a health check and failure retry for the primary macOS launchd run at 10:45.
+- It skips duplicate fetching when the 10:45 run succeeded and the repo is clean and synchronized; otherwise it invokes `/Users/zhaobingkun/dev/Python/spider/run_cluesbysam_daily.sh` and verifies the push/live result.
