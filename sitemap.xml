@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://cluesbysam.net/</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://cluesbysam.net/levels.html</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://cluesbysam.net/</loc><lastmod>2026-08-07</lastmod></url>
+  <url><loc>https://cluesbysam.net/levels.html</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://cluesbysam.net/blog.html</loc><lastmod>2026-01-20</lastmod></url>
-  <url><loc>https://cluesbysam.net/game.html</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://cluesbysam.net/game.html</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://cluesbysam.net/contact.html</loc><lastmod>2026-01-20</lastmod></url>
   <url><loc>https://cluesbysam.net/privacy.html</loc><lastmod>2026-01-20</lastmod></url>
   <url><loc>https://cluesbysam.net/terms-of-service.html</loc><lastmod>2026-01-20</lastmod></url>
@@ -332,4 +332,5 @@
   <url><loc>https://cluesbysam.net/level/323/</loc><lastmod>2026-08-04</lastmod></url>
   <url><loc>https://cluesbysam.net/level/324/</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://cluesbysam.net/level/325/</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://cluesbysam.net/level/326/</loc><lastmod>2026-08-07</lastmod></url>
 </urlset>
