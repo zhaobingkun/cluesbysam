@@ -1,5 +1,15 @@
 window.CLUES_PLAYLIST = [
   {
+    "level": 328,
+    "title": "Clues by Sam | 9th Aug 2026",
+    "videoId": "Vn-1KXwluWI",
+    "subtitle": "Clues by Sam | 9th Aug 2026",
+    "href": "https://www.youtube.com/watch?v=Vn-1KXwluWI",
+    "levelStart": 328,
+    "levelEnd": 328,
+    "slug": "level-328"
+  },
+  {
     "level": 327,
     "title": "Clues by Sam | 8th Aug 2026",
     "videoId": "n_v6_cpf3z8",
