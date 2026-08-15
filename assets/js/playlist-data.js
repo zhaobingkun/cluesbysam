@@ -1,5 +1,25 @@
 window.CLUES_PLAYLIST = [
   {
+    "level": 334,
+    "title": "Clues by Sam | 15th Aug 2026",
+    "videoId": "dxXsi17jJBI",
+    "subtitle": "Clues by Sam | 15th Aug 2026",
+    "href": "https://www.youtube.com/watch?v=dxXsi17jJBI",
+    "levelStart": 334,
+    "levelEnd": 334,
+    "slug": "level-334"
+  },
+  {
+    "level": 333,
+    "title": "Clues by Sam | 14th Aug 2026",
+    "videoId": "CWl6bLRBbjw",
+    "subtitle": "Clues by Sam | 14th Aug 2026",
+    "href": "https://www.youtube.com/watch?v=CWl6bLRBbjw",
+    "levelStart": 333,
+    "levelEnd": 333,
+    "slug": "level-333"
+  },
+  {
     "level": 332,
     "title": "Clues by Sam | 13th Aug 2026",
     "videoId": "oJStITlx2Y4",
