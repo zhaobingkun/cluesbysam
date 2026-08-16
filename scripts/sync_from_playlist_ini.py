@@ -439,29 +439,32 @@ def render_level_page(
 
 def update_index_html(entries: list[dict], max_level: int) -> None:
     text = INDEX_HTML.read_text()
-    latest = entries[0]
-    latest_date = extract_date_for_entry(latest)
+    dated_entries = build_dated_entries(entries)
+    if not dated_entries:
+        raise ValueError("Unable to find dated entries for homepage update")
+    latest = max(dated_entries, key=lambda entry: entry["dateValue"])
+    latest_date = latest["dateText"]
     latest_title_html = format_title(latest_date, html=True)
     latest_title_attr = format_title(latest_date, html=False)
     text = re.sub(r'max="\d+"', f'max="{max_level}"', text)
     text = re.sub(r"1-\d+", f"1-{max_level}", text)
     text = re.sub(r"📅 \d+\+ Daily (?:Levels|Guides)", f"📅 {max_level}+ Daily Guides", text)
     text = re.sub(
-        r"<h2 style=\"margin:0 0 0.5rem;\">.*?</h2>",
-        f"<h2 style=\"margin:0 0 0.5rem;\">{latest_title_html}</h2>",
+        r'(<div class="card home-play-latest answer-video-card">.*?<h2>).*?(</h2>)',
+        rf"\g<1>{latest_title_html}\g<2>",
         text,
         count=1,
         flags=re.S,
     )
     text = re.sub(
-        r'<div class="video-frame" style="min-height:280px;" data-video-id="[^"]+" data-title="[^"]+" data-priority="high">',
-        f'<div class="video-frame" style="min-height:280px;" data-video-id="{latest["videoId"]}" data-title="{latest_title_attr}" data-priority="high">',
+        r'(<div class="video-frame\b[^>]*data-video-id=")[^"]+(" data-title=")[^"]+(" data-priority="high")',
+        rf"\g<1>{latest['videoId']}\g<2>{latest_title_attr}\g<3>",
         text,
         count=1,
     )
     text = re.sub(
-        r'<img src="https://i\.ytimg\.com/vi_webp/[^/]+/hqdefault\.webp" alt="Clues by Sam Level \d+ answer thumbnail"',
-        f'<img src="https://i.ytimg.com/vi_webp/{latest["videoId"]}/hqdefault.webp" alt="Clues by Sam {latest_date} answer thumbnail"',
+        r'(<img src="https://i\.ytimg\.com/vi_webp/)[^/]+(/hqdefault\.webp" alt="Clues by Sam )[^" ]+(?: [^" ]+)*( answer thumbnail")',
+        rf"\g<1>{latest['videoId']}\g<2>{latest_date}\g<3>",
         text,
         count=1,
     )
@@ -471,9 +474,27 @@ def update_index_html(entries: list[dict], max_level: int) -> None:
         text,
         count=1,
     )
+    text = re.sub(
+        r'(<a class="btn" href=")/level/\d+(/">Open today&apos;s answer</a>)',
+        rf'\1/level/{latest["level"]}\2',
+        text,
+        count=1,
+    )
+    text = re.sub(
+        r'(<a class="btn btn-secondary" href=")/level/\d+(/">Read today&apos;s guide</a>)',
+        rf'\1/level/{latest["level"]}\2',
+        text,
+        count=1,
+    )
+    text = re.sub(
+        r'(<a href=")/level/\d+(/">Latest answer page</a>)',
+        rf'\1/level/{latest["level"]}\2',
+        text,
+        count=1,
+    )
     home_cards = "\n".join(
         build_card(entry["level"], entry["videoId"], extract_date_for_entry(entry), "mqdefault")
-        for entry in entries[:6]
+        for entry in sorted(dated_entries, key=lambda entry: entry["dateValue"], reverse=True)[:6]
     )
     text = replace_cards_block(text, 'data-home-grid', home_cards + "\n")
     INDEX_HTML.write_text(text)
