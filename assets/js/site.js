@@ -157,17 +157,19 @@
   }
 
   function injectStructuredData() {
-    addJsonLd({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "CluesBySam.org",
-      "url": "https://cluesbysam.net/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://cluesbysam.net/level/{search_term_string}/",
-        "query-input": "required name=search_term_string"
-      }
-    });
+    if (!document.querySelector('script[data-schema="website"]')) {
+      addJsonLd({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Clues by Sam Guide",
+        "url": "https://cluesbysam.net/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cluesbysam.net/level/{search_term_string}/",
+          "query-input": "required name=search_term_string"
+        }
+      });
+    }
 
     const levelMatch = window.location.pathname.match(/level\/(\d+)/);
     if (levelMatch && window.CLUES_PLAYLIST) {
@@ -192,7 +194,7 @@
           "thumbnailUrl": [thumb],
           "contentUrl": entry.href || `https://www.youtube.com/watch?v=${entry.videoId}`,
           "embedUrl": `https://www.youtube-nocookie.com/embed/${entry.videoId}`,
-          "publisher": { "@type": "Organization", "name": "CluesBySam.org" }
+          "publisher": { "@type": "Organization", "name": "Clues by Sam Guide" }
         });
       }
     }

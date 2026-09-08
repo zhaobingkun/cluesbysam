@@ -1,6 +1,7 @@
 # Project Experience
 
 ## Current Notes
+- 2026-09-08 23:15 CST: GSC P0 added raw HTML Open Graph/Twitter metadata and page-specific JSON-LD to the homepage, archive, and play entry pages. `assets/js/site.js` now avoids duplicate WebSite schema on those pages and uses `.net`-consistent guide branding. Added `scripts/verify_site.py` to verify canonicals, sitemap targets, internal links, and 404 noindex; the initial run exposed and fixed an indexable `404.html`.
 - `README.md` and `PROJECT-MEMORY.md` existed before `agents.md` / `memory.md`; keep using them as historical context.
 - The homepage has an embedded official game iframe and a latest answer video block near the top. If a homepage area disappears, check iframe blocking, external media requests, and JavaScript-rendered cards first.
 
