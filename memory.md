@@ -34,3 +34,12 @@
 ## 2026-08-04 Codex daily task
 - Codex automation `clues-by-sam` runs daily at 11:15 as a health check and failure retry for the primary macOS launchd run at 10:45.
 - It skips duplicate fetching when the 10:45 run succeeded and the repo is clean and synchronized; otherwise it invokes `/Users/zhaobingkun/dev/Python/spider/run_cluesbysam_daily.sh` and verifies the push/live result.
+
+## 2026-10-21 Single-page SEO routing experiment
+
+- User selected Clues after the ten-site checks. Only /game.html is changed: clearer latest-guide/archive/spoiler-free-help routes, three contextual static links, and a page-scoped auto-height override for the old game-embed card. Existing official external action and fan-made disclosure are preserved, not newly invented. No daily puzzle data or historical dates changed.
+- GSC complete data ends 2026-10-18. Exact game URL 28d (09/21–10/18):86 clicks/35,857 impressions/0.2398%/position~4.63; prior28d74/34,264/0.2160%/~4.87. Strict90d(07/21–10/18):266/108,453/0.2453%/~4.83. Brand/navigation queries dominate; low CTR is not proof of bad titles. Keep title/H1/meta/OG/Twitter/canonical/noindex policy stable.
+- GA4 property519866319, stream13294881969, tagG-99Y6YPMSV8 matches site.js; outbound-click enhanced measurement is already on, no settings changed. Same28d Organic Search landing /game.html:122 sessions/82 active/75 new/6 seconds; previous28d151/85/77/7 seconds. Short sessions may mean successful outbound navigation, not failure. Key event definitions remain unverified; zero is not zero business value.
+- GSC page-filtered country/device totals differ from daily/page totals (28d72 vs86 clicks; three-month223 vs273). Preserve raw exports in the summary project and do not infer device shares or causes from the mismatch.
+- Five new regression tests and verify_site.py pass (396HTML/393sitemap). Desktop and390px visual checks pass; mobile scrollWidth390 equals viewport390. sitemap game entry lastmod updated to2026-10-21, URL list unchanged. No global stylesheet, homepage, archive, analytics, ad settings, redirect or generator changes.
+- This page is hand-maintained; daily sync only refreshes its navigation max. Do not run a whole-site rebuild for this edit. Daily wrapper refuses dirty repos, so commit only this bounded change after validation. Production/push evidence belongs in the independent report in the summary project; do not claim success before verifying. Review7/14/28days from actual publication.

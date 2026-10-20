@@ -22,6 +22,13 @@
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    /* This page is a link hub, not a fixed-height game embed. */
+    .play-page .hero-player .official-play-card { height: auto; min-height: 0; }
+    .play-page .play-help { max-width: 1100px; }
+    .play-page .play-help li { margin: 0.75rem 0; }
+    .play-page .play-help a { text-decoration: underline; text-underline-offset: 0.15em; }
+  </style>
   <script type="application/ld+json" data-schema="website">
   {
     "@context": "https://schema.org",
@@ -90,7 +97,7 @@
     <div class="container hero-grid">
       <div class="play-stack">
         <h1>Play Clues by Sam on the official site</h1>
-        <p>Open the puzzle at cluesbysam.com, then use our guides here if you need the daily answer or a walkthrough.</p>
+        <p>Play at cluesbysam.com. This independent guide does not host the game; use the links below for the latest walkthrough, past answers, or spoiler-free logic help.</p>
       </div>
     </div>
   </section>
@@ -99,13 +106,24 @@
       <div class="play-embed official-play-card official-play-card-wide">
         <span class="badge">Official game</span>
         <h2>Open Clues by Sam</h2>
-        <p>Clues by Sam is hosted at cluesbysam.com. The official site now tells browsers not to load the game inside another website, so use the button below to open it directly.</p>
+        <p>The playable puzzle is on cluesbysam.com. Open it in a new tab, or stay here to find an answer guide. Walkthroughs contain spoilers; the logic guides below explain the rules without revealing a daily solution.</p>
         <div class="official-play-actions">
           <a class="btn" href="https://cluesbysam.com/" target="_blank" rel="noopener">Open official game</a>
-          <a class="btn btn-secondary" href="/levels.html">Find today&apos;s answer</a>
+          <a class="btn btn-secondary" href="/">Latest answer &amp; walkthrough</a>
         </div>
         <p class="small">This fan-made guide site is not affiliated with the official game.</p>
       </div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="play-help-heading">
+    <div class="container card play-help">
+      <h2 id="play-help-heading">Choose the help you need</h2>
+      <ul>
+        <li><a href="/levels.html">Browse past answers by date</a> to match the puzzle you are solving with an archived video walkthrough.</li>
+        <li><a href="/blog/neighbor-logic.html">Understand neighbor and connected clues</a> before checking a solution.</li>
+        <li><a href="/blog/color-tags.html">Use color tags to track deductions</a> when you want to keep working through the puzzle yourself.</li>
+      </ul>
+      <p class="small">The archive contains independent video guides, not playable copies of the official puzzles.</p>
     </div>
   </section>
 </main>
